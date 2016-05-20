@@ -21,7 +21,8 @@
         </tr>
     </thead>
     <tbody>
-        <?php=$count=0;
+        <?php
+        $count=0;
         if (!empty($show)) {
             foreach ($show as $row) :
                 ?><tr>  

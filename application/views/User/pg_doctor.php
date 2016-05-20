@@ -1,23 +1,23 @@
 <?php
 $attribute = array('id' => 'valid');
-echo form_open('User/addpgDoctor');
+echo form_open('User/addDoctor');
 ?>
 
 
 <div class="col-lg-10 col-sm-10 col-md-10 col-xs-10">
-    <div class="col-lg-4">
+    <div class="form-group">
         <input type="text" class="form-control" value="" name="Doctor_Name" placeholder="Doctor Name" />
     </div>
-    <div class="col-lg-4">
+    <div class="form-group">
         <input type="text" class="form-control" value="" name="MSL_Code" placeholder="MSL Code" /> </div>
-    <div class="col-lg-4">
+    <div class="form-group">
         <input type="text" class="form-control" value="" name="address" placeholder="Clinic Address"/> </div>
-    <div class="col-lg-4">
+    <div class="form-group">
         <input type="text" class="form-control" value="" name="Mobile_Number" placeholder="Mobile "/> </div>
-    <div class="col-lg-4">
+    <div class="form-group">
         <input type="text" class="form-control" value="" name="email" placeholder="Email"/> </div>
-    <div class="col-lg-4">
-        Designation:<select  class="form-control" name="Years_Practice" >
+    <div class="form-group">
+       <select  class="form-control" name="Years_Practice" >
             <option value="">Select Years Of Practice</option>
             <option>0</option>
             <option>1</option>
@@ -27,20 +27,19 @@ echo form_open('User/addpgDoctor');
             <option>5</option>
                </select> 
         </div>
-    <div class="col-lg-4">
+    <div class="form-group">
         <input type="text" class="form-control" value="" id="date" name="DOB" placeholder="Date Of Birth"/></div>
-    <div class="col-lg-4">
+    <div class="form-group">
         <input type="text" class="form-control" value="" id="date1" name="ANNIVERSARY" placeholder="Clinic Anniversary"/></div>
-    <div class="col-lg-4">
+    <div class="form-group">
         <input type="text" class="form-control" value="" name="ClipaSerice" placeholder=" Name Of Clipa Services"/> </div>
-    <div class="col-lg-4">
-        FITB DONE  <input type="radio" name="FITB" />
-        <option>Yes</option>
-        <option>No</option>
+     <div class="form-group">
+        FITB DONE &nbsp; <input type="radio" name="FITB" value="Yes" />Yes
+         <input type="radio" name="FITB" value="No" /> No
+        
     </div>
 
-
-    <button class="btn btn-success" type="submit">Save</button>
+    <button class="btn btn-block btn-success " type="submit">Save</button>
 </div>
 </div>
 </form>
@@ -143,5 +142,4 @@ echo form_open('User/addpgDoctor');
     });
     });
 </script>
-
 
