@@ -16,7 +16,7 @@
 | environments.
 |
 */
-$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/bi-tracking23Feb';
+$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/youngdoctor';
 
 /*
 |--------------------------------------------------------------------------
