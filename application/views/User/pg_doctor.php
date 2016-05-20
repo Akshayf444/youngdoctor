@@ -1,10 +1,10 @@
 <?php
 $attribute = array('id' => 'valid');
-echo form_open('User/addDoctor');
+echo form_open('User/addpgDoctor');
 ?>
 
 
-<div class="col-lg-10 col-sm-10 col-md-10 col-xs-10">
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
     <div class="form-group">
         <input type="text" class="form-control" value="" name="Doctor_Name" placeholder="Doctor Name" />
     </div>
@@ -17,16 +17,20 @@ echo form_open('User/addDoctor');
     <div class="form-group">
         <input type="text" class="form-control" value="" name="email" placeholder="Email"/> </div>
     <div class="form-group">
-       <select  class="form-control" name="Years_Practice" >
-            <option value="">Select Years Of Practice</option>
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-               </select> 
+        <input type="text"  class="form-control" name="Years_Practice" placeholder="No. of years" >
+           
         </div>
+   <div class="form-group">
+        <input type="text"  class="form-control" name="Institution" placeholder="Institution" >
+           
+        </div>	
+    <div class="form-group">
+        <input type="text"  class="form-control" name="Region" placeholder="Region" >
+           
+        </div>	
+    <div class="form-group">
+        <input type="text"  class="form-control" name="State" placeholder="State" >
+                </div>	
     <div class="form-group">
         <input type="text" class="form-control" value="" id="date" name="DOB" placeholder="Date Of Birth"/></div>
     <div class="form-group">
@@ -50,13 +54,15 @@ echo form_open('User/addDoctor');
             changeYear: true,
             dateFormat: 'yy-mm-dd'
     });
-            $(function () {
-            $("#date1").datepicker({
-            changeMonth: true,
-                    changeYear: true,
-                    dateFormat: 'yy-mm-dd'
+     $("#date").datepicker({
+    changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yy-mm-dd'
+    });
+            
+            
             });
-            });</script>
+        </script>
 
 <script src="<?php echo asset_url() ?>js/formValidation.min.js" type="text/javascript"></script>
 <script src="<?php echo asset_url() ?>js/bootstrap.min.js" type="text/javascript"></script>
