@@ -9,6 +9,8 @@ class MY_Controller extends CI_Controller {
     public $SSM_Emp_Id;
     public $Designation;
     public $Reporting_Id;
+    public $Full_Name;
+    public $smswayid;
 
     function __construct() {
         parent::__construct();
@@ -19,6 +21,8 @@ class MY_Controller extends CI_Controller {
         $this->SSM_Emp_Id = $this->session->userdata('SSM_Emp_Id');
         $this->Reporting_Id = $this->session->userdata('Reporting_Id');
         $this->Designation = $this->session->userdata('Designation');
+        $this->Full_Name = $this->session->userdata('Full_Name');
+        $this->smswayid = $this->session->userdata('smswayid');
     }
 
     function is_logged_in($Profile = "") {
@@ -41,6 +45,7 @@ class MY_Controller extends CI_Controller {
         $this->session->unset_userdata('SSM_Emp_Id');
         $this->session->unset_userdata('Reporting_Id');
         $this->session->unset_userdata('Designation');
+        $this->session->unset_userdata('Full_Name');
 
         $this->Emp_Id = null;
         $this->TM_Emp_Id = null;
@@ -49,6 +54,7 @@ class MY_Controller extends CI_Controller {
         $this->SSM_Emp_Id = null;
         $this->Reporting_Id = null;
         $this->Designation = null;
+        $this->Full_Name = null;
         redirect('User/index', 'refresh');
     }
 
