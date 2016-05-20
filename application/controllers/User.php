@@ -16,24 +16,6 @@ class User extends MY_Controller {
         $this->load->model('Doctor_Model');
         $this->load->model('Encryption');
         $this->load->library('form_validation');
-        $this->calcPlanning();
-    }
-
-    public function calcPlanning() {
-        $this->db->select('*');
-        $this->db->from('Setting');
-        $this->db->where('Current_Month', date('n'));
-        $query = $this->db->get();
-        $result = $query->result();
-        if (!empty($result)) {
-            foreach ($result as $value) {
-                $this->nextMonth = $value->Planned_For_Month;
-                $this->nextYear = $value->Planned_For_Year;
-            }
-        }
-
-        $this->nextMonth = date('m');
-        $this->nextYear = date('Y');
     }
 
     public function index() {
