@@ -91,55 +91,25 @@
                     <!-- Sidebar user panel -->
                     <ul class="sidebar-menu">
 
-                        <li>
-                            <a href="<?php echo site_url('Admin/emp_view'); ?>">
-                                <i class="ion ion-ios-people-outline"></i>
-                                <span>Employee Master</span>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>Young Doctor</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
+                            <ul class="treeview-menu" style="display: none;">
+                                <li><a href="index.html"><i class="fa fa-circle-o"></i> Add Doctor</a></li>
+                                <li class=""><a href="index2.html"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
+                            </ul>
                         </li>
 
-                        <li>
-                            <a href="<?php echo site_url('Admin/doc_view'); ?>">
-                                <i class="fa fa-user-md"></i> <span>Doctor Master</span> 
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>PG Doctor</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
+                            <ul class="treeview-menu" style="display: none;">
+                                <li><a href="index.html"><i class="fa fa-circle-o"></i> Add Doctor</a></li>
+                                <li class=""><a href="index2.html"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="<?php echo site_url('Admin/TabControl'); ?>">
-                                <i class="fa fa-folder"></i> <span>Tab Control</span> 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo site_url('Admin/Userlog'); ?>">
-                                <i class="fa fa-file-text"></i> <span>User Log</span> 
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="<?php echo site_url('Admin/login_history'); ?>">
-                                <i class="fa fa-eye-slash"></i> <span>Login History</span> 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo site_url('Admin/UnlockUser'); ?>">
-                                <i class="fa fa-unlock"></i> <span>Unlock User</span> 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo site_url('Admin/emp_docmaster'); ?>">
-                                <i class="fa fa-user-md"></i> <span>Employee Doctor</span> 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo site_url('Admin/territory_view'); ?>">
-                                <i class="fa fa-file-archive-o"></i> <span>Territory Master</span> 
-                            </a>
-                        </li>
-                        <!--                        
-                                                  <li>
-                                                    <a href="<?php echo site_url('Admin/asm_target'); ?>">
-                                                        <i class="fa fa-file-archive-o"></i> <span>Target</span> 
-                                                    </a>
-                                                </li>-->
 
                     </ul>
                 </section>
