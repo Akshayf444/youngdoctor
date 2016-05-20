@@ -81,7 +81,7 @@ class User extends MY_Controller {
     }
 
     public function addDoctor() {
-        var_dump($_SESSION);
+
         if ($this->is_logged_in('TM')) {
             if ($this->input->post()) {
                 $data = array(
@@ -102,10 +102,10 @@ class User extends MY_Controller {
                 $this->User_model->addDoctor($data);
                 redirect('User/addDoctor', 'refresh');
             }
-            $data = array('title' => 'Add Young Doctor', 'content' => 'User/add_doctor', 'view_data' => 'blank');
+            $data = array('title' => 'Add Young Doctor', 'content' => 'User/add_doctor', 'view_data' => 'blank','page_title'=>'Add Doctor');
             $this->load->view('template3', $data);
         } else {
-            // $this->logout();
+            $this->logout();
         }
     }
 
