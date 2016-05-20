@@ -2,57 +2,27 @@
 
 class MY_Controller extends CI_Controller {
 
-    public $VEEVA_Employee_ID;
-    public $Local_Employee_ID;
+    public $Emp_Id;
+    public $TM_Emp_Id;
+    public $BM_Emp_Id;
+    public $SM_Emp_Id;
+    public $SSM_Emp_Id;
     public $Designation;
-    public $Reporting_To;
-    public $Reporting_VEEVA_ID;
-    public $Reporting_Local_ID;
-    public $Division;
-    public $Full_Name;
-    public $table_name;
-    public $Product_Id = 0;
-    public $nextMonth;
-    public $nextYear;
-    public $Individual_Type;
-    public $message;
-    public $password_status;
-    public $Zone;
-    public $Cycle;
+    public $Reporting_Id;
 
     function __construct() {
         parent::__construct();
-        $this->VEEVA_Employee_ID = $this->session->userdata('VEEVA_Employee_ID');
-        $this->Local_Employee_ID = $this->session->userdata('Local_Employee_ID');
-        $this->Reporting_To = $this->session->userdata('Reporting_To');
-        $this->Reporting_VEEVA_ID = $this->session->userdata('Reporting_VEEVA_ID');
-        $this->Reporting_Local_ID = $this->session->userdata('Reporting_Local_ID');
+        $this->Emp_Id = $this->session->userdata('Emp_Id');
+        $this->TM_Emp_Id = $this->session->userdata('TM_Emp_Id');
+        $this->BM_Emp_Id = $this->session->userdata('BM_Emp_Id');
+        $this->SM_Emp_Id = $this->session->userdata('SM_Emp_Id');
+        $this->SSM_Emp_Id = $this->session->userdata('SSM_Emp_Id');
+        $this->Reporting_Id = $this->session->userdata('Reporting_Id');
         $this->Designation = $this->session->userdata('Designation');
-        $this->Division = $this->session->userdata('Division');
-        $this->Full_Name = $this->session->userdata('Full_Name');
-        $this->Product_Id = $this->session->userdata('Product_Id');
-        $this->password_status = $this->session->userdata('password_status');
-        $this->Zone = $this->session->userdata('Zone');
-        $this->nextMonth = date('n');
-        $this->nextYear = date('Y');
-
-        if (date('n') == 1 || date('n') == 2 || date('n') == 3 || date('n') == 4) {
-            $this->Cycle = 1;
-        } elseif (date('n') == 5 || date('n') == 6 || date('n') == 7 || date('n') == 8) {
-            $this->Cycle = 2;
-        } elseif (date('n') == 9 || date('n') == 10 || date('n') == 11 || date('n') == 12) {
-            $this->Cycle = 3;
-        }
-
-        if ($this->Product_Id == 1) {
-            $this->Individual_Type = 'Hospital';
-        } else {
-            $this->Individual_Type = 'Doctor';
-        }
     }
 
     function is_logged_in($Profile = "") {
-        if (!is_null($this->session->userdata('VEEVA_Employee_ID')) && $this->session->userdata('VEEVA_Employee_ID') != '' && !is_null($this->session->userdata('VEEVA_Employee_ID')) && !is_null($this->password_status) && $this->password_status != '') {
+        if (!is_null($this->session->userdata('Emp_Id')) && $this->session->userdata('Emp_Id') != '') {
             if (strtolower($this->session->userdata('Designation')) == strtolower($Profile)) {
                 return TRUE;
             } else {
@@ -64,30 +34,21 @@ class MY_Controller extends CI_Controller {
     }
 
     function logout() {
-        $this->session->unset_userdata('VEEVA_Employee_ID');
-        $this->session->unset_userdata('Local_Employee_ID');
+        $this->session->unset_userdata('Emp_Id');
+        $this->session->unset_userdata('TM_Emp_Id');
+        $this->session->unset_userdata('BM_Emp_Id');
+        $this->session->unset_userdata('SM_Emp_Id');
+        $this->session->unset_userdata('SSM_Emp_Id');
+        $this->session->unset_userdata('Reporting_Id');
         $this->session->unset_userdata('Designation');
-        $this->session->unset_userdata('Reporting');
-        $this->session->unset_userdata('Reporting_VEEVA_ID');
-        $this->session->unset_userdata('Reporting_Local_ID');
-        $this->session->unset_userdata('Product_Id');
-        $this->session->unset_userdata('Division');
-        $this->session->unset_userdata('Zone');
-        $this->session->unset_userdata('password_status');
-        $this->VEEVA_Employee_ID = null;
-        $this->Local_Employee_ID = null;
+
+        $this->Emp_Id = null;
+        $this->TM_Emp_Id = null;
+        $this->BM_Emp_Id = null;
+        $this->SM_Emp_Id = null;
+        $this->SSM_Emp_Id = null;
+        $this->Reporting_Id = null;
         $this->Designation = null;
-        $this->Reporting_To = null;
-        $this->Reporting_VEEVA_ID = null;
-        $this->Reporting_Local_ID = null;
-        $this->Division = null;
-        $this->Full_Name = null;
-        $this->table_name = null;
-        $this->Product_Id = null;
-        $this->nextMonth = null;
-        $this->nextYear = null;
-        $this->Zone = null;
-        $this->password_status = null;
         redirect('User/index', 'refresh');
     }
 

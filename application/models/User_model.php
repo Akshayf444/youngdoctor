@@ -4,15 +4,33 @@ class User_model extends CI_Model {
 
     public function __construct() {
         $this->load->database();
-        $this->table_name = 'Employee_Master';
+        $this->table_name = 'tbl_employee_master';
     }
 
-    public function authentication($username, $password) {
+    public function tmauthentication($username, $password) {
         $this->db->select('*');
         $this->db->from($this->table_name);
-        $this->db->where(array('Username' => $username, 'Password' => $password, 'Status' => '1'));
+        $this->db->where(array('TM_Emp_Id' => $username, 'password' => $password));
         $query = $this->db->get();
-       // echo $this->db->last_query();
+        // echo $this->db->last_query();
+        return $query->row_array();
+    }
+
+    public function bmauthentication($username, $password) {
+        $this->db->select('*');
+        $this->db->from($this->table_name);
+        $this->db->where(array('BM_Emp_Id' => $username, 'password' => $password));
+        $query = $this->db->get();
+        // echo $this->db->last_query();
+        return $query->row_array();
+    }
+
+    public function smauthentication($username, $password) {
+        $this->db->select('*');
+        $this->db->from($this->table_name);
+        $this->db->where(array('SM_EMP_Id' => $username, 'password' => $password));
+        $query = $this->db->get();
+        // echo $this->db->last_query();
         return $query->row_array();
     }
 

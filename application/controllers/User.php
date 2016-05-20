@@ -41,143 +41,42 @@ class User extends MY_Controller {
         $message = '';
         if ($this->input->post()) {
             $username = $this->input->post('username');
-            $password = $this->Encryption->encode($this->input->post('password'));
-            $check = $this->User_model->authentication($username, $password);
+            $password = $this->input->post('password');
+            $tmexist = $this->User_model->tmauthentication($username, $password);
 
-            if (empty($check)) {
-                $emp = $this->User_model->employee_id($username);
-                if (isset($emp['VEEVA_Employee_ID'])) {
-                    $count = $this->User_model->password_count($emp['VEEVA_Employee_ID']);
-                    if ($count['cnt'] > 4) {
-                        $data1 = array(
-                            'Status' => 'locked',
-                        );
-                        $this->User_model->update_status($username, $data1);
-                        $data['message'] = 'Your Account Has Been Locked';
-                        $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Your Account Has Been Blocked', 'danger'));
-
-                        $message = 'Account Locked';
-                        $logdata = array(
-                            'date' => date('Y-m-d H:i:s'),
-                            'description' => $message,
-                            'VEEVA_Employee_ID' => $emp['VEEVA_Employee_ID'],
-                            'ip_address' => $this->input->ip_address(),
-                            'Profile' => $emp['Profile'],
-                        );
-                        $this->User_model->insertLog($logdata);
-                    } else {
-
-//Checking what was the last failed attempt for for perticular user .
-                        $lastFailed_attempt = $this->User_model->lastFailedAttempt($emp['VEEVA_Employee_ID']);
-                        if (!empty($lastFailed_attempt)) {
-                            $current_date = date('Y-m-d H:i:s');
-                            $current_date = strtotime($current_date);
-                            $lastAttemptDate = strtotime($lastFailed_attempt->created_at);
-
-                            if (($current_date - $lastAttemptDate) > 3600) {
-                                $data1 = array(
-                                    'Status' => '1',
-                                );
-                                $this->User_model->update_status($username, $data1);
-                                $add = array(
-                                    'VEEVA_Employee_ID' => $emp['VEEVA_Employee_ID'],
-                                    'password' => $password,
-                                    'created_at' => date('Y-m-d H:i:s'),
-                                    'emailid' => $username
-                                );
-                                $this->User_model->password_save($add);
-                                $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Username/password Incorrect', 'danger'));
-                                $message = 'Incorrect Username/Password';
-                            } else {
-                                $add = array(
-                                    'VEEVA_Employee_ID' => $emp['VEEVA_Employee_ID'],
-                                    'password' => $password,
-                                    'created_at' => date('Y-m-d H:i:s'),
-                                    'emailid' => $username
-                                );
-                                $this->User_model->password_save($add);
-                                $message = 'Incorrect Username/Password';
-                                $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Username/password Incorrect', 'danger'));
-                            }
-                        } else {
-                            $add = array(
-                                'VEEVA_Employee_ID' => $emp['VEEVA_Employee_ID'],
-                                'password' => $password,
-                                'created_at' => date('Y-m-d H:i:s'),
-                                'emailid' => $username
-                            );
-                            $this->User_model->password_save($add);
-                            $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Username/password Incorrect', 'danger'));
-                            $message = 'Incorrect Username/Password';
-                        }
-                        $message = 'Invalid Username / Password';
-                        $logdata = array(
-                            'date' => date('Y-m-d H:i:s'),
-                            'description' => $message,
-                            'VEEVA_Employee_ID' => $emp['VEEVA_Employee_ID'],
-                            'ip_address' => $this->input->ip_address(),
-                            'Profile' => $emp['Profile'],
-                        );
-                        $this->User_model->insertLog($logdata);
-                    }
-                } else {
-                    $add = array(
-                        'VEEVA_Employee_ID' => '',
-                        'password' => $password,
-                        'created_at' => date('Y-m-d H:i:s'),
-                        'emailid' => $username
-                    );
-                    $this->User_model->password_save($add);
-                    $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Username/password Incorrect', 'danger'));
-                }
+            if (!empty($tmexist)) {
+                $this->session->set_userdata('Emp_Id') = $tmexist['TM_Emp_Id'];
+                $this->session->set_userdata('TM_Emp_Id') = $tmexist['TM_Emp_Id'];
+                $this->session->set_userdata('BM_Emp_Id') = $tmexist['BM_Emp_Id'];
+                $this->session->set_userdata('SM_Emp_Id') = $tmexist['SM_Emp_Id'];
+                $this->session->set_userdata('SSM_Emp_Id') = $tmexist['SSM_Emp_Id'];
+                $this->session->set_userdata('Reporting_Id') = $tmexist['BM_Emp_Id'];
+                $this->session->set_userdata('Designation') = 'TM';
+                redirect('User/dashboard', 'refresh');
             } else {
-                $this->session->set_userdata('VEEVA_Employee_ID', $check['VEEVA_Employee_ID']);
-                $this->session->set_userdata('Local_Employee_ID', $check['Local_Employee_ID']);
-                $this->session->set_userdata('Full_Name', $check['Full_Name']);
-                $this->session->set_userdata('Division', $check['Division']);
-                $this->session->set_userdata('Designation', $check['Profile']);
-                $this->session->set_userdata('Reporting_To', $check['Reporting_To']);
-                $this->session->set_userdata('Reporting_VEEVA_ID', $check['Reporting_VEEVA_ID']);
-                $this->session->set_userdata('Reporting_Local_ID', $check['Reporting_Local_ID']);
-                $this->session->set_userdata('Reporting_To', $check['Reporting_To']);
-                $this->session->set_userdata('password_status', $check['password_status']);
-                $this->session->set_userdata('Zone', $check['Zone']);
-
-                $check_password = $this->User_model->password_status($this->session->userdata('VEEVA_Employee_ID'));
-                $add = array(
-                    'VEEVA_Employee_ID' => $check['VEEVA_Employee_ID'],
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'password' => $check['password']
-                );
-                $this->db->insert('login_history', $add);
-                $message = 'Login by ' . $check['Full_Name'];
-                $logdata = array(
-                    'date' => date('Y-m-d H:i:s'),
-                    'description' => $message,
-                    'VEEVA_Employee_ID' => $check['VEEVA_Employee_ID'],
-                    'ip_address' => $this->input->ip_address(),
-                    'Profile' => $check['Profile'],
-                );
-                $this->User_model->insertLog($logdata);
-
-                if (is_null($check_password['password_status']) || $check_password['password_status'] == '') {
-                    redirect('User/password', 'refresh');
+                $bmexist = $this->User_model->bmauthentication($username, $password);
+                if (!empty($bmexist)) {
+                    $this->session->set_userdata('Emp_Id') = $tmexist['BM_Emp_Id'];
+                    $this->session->set_userdata('TM_Emp_Id') = $tmexist['TM_Emp_Id'];
+                    $this->session->set_userdata('BM_Emp_Id') = $tmexist['BM_Emp_Id'];
+                    $this->session->set_userdata('SM_Emp_Id') = $tmexist['SM_Emp_Id'];
+                    $this->session->set_userdata('SSM_Emp_Id') = $tmexist['SSM_Emp_Id'];
+                    $this->session->set_userdata('Reporting_Id') = $tmexist['BM_Emp_Id'];
+                    $this->session->set_userdata('Designation') = 'BM';
+                    redirect('User/dashboard', 'refresh');
                 } else {
-                    $data = array('Last_Login' => date('Y-m-d H:i:s'));
-                    $this->User_model->update_last_login($this->session->userdata('VEEVA_Employee_ID'), $data);
-                    if ($check_password['Profile'] === 'ASM') {
-                        redirect('ASM/dashboard', 'refresh');
-                    } elseif ($check_password['Profile'] === 'ZSM') {
-//redirect('Report/dashboard');
-                        redirect('Report/dailyTrend?Zone=' . $check_password['Zone'] . '&Division=' . $check_password['Division'], 'refresh');
-                    } elseif ($check_password['Profile'] === 'BDM') {
+                    $smexist = $this->User_model->smauthentication($username, $password);
+                    if (!empty($smexist)) {
+                        $this->session->set_userdata('Emp_Id') = $tmexist['SM_Emp_Id'];
+                        $this->session->set_userdata('TM_Emp_Id') = $tmexist['TM_Emp_Id'];
+                        $this->session->set_userdata('BM_Emp_Id') = $tmexist['BM_Emp_Id'];
+                        $this->session->set_userdata('SM_Emp_Id') = $tmexist['SM_Emp_Id'];
+                        $this->session->set_userdata('SSM_Emp_Id') = $tmexist['SSM_Emp_Id'];
+                        $this->session->set_userdata('Reporting_Id') = $tmexist['BM_Emp_Id'];
+                        $this->session->set_userdata('Designation') = 'SM';
                         redirect('User/dashboard', 'refresh');
-                    } elseif ($check_password['Profile'] === 'HO User' || $check_password['Profile'] === 'ETM' || $check_password['Profile'] === 'MD') {
-                        redirect('Report/dailyTrend', 'refresh');
-                    } elseif ($check_password['Profile'] === 'Marketing' || $check_password['Profile'] === 'NSM') {
-                        redirect('Report/dailyTrend?Division=' . $check_password['Division'], 'refresh');
-                    } elseif ($check_password['Profile'] === 'ADMIN') {
-                        redirect('Admin/emp_view', 'refresh');
+                    } else {
+                        
                     }
                 }
             }
@@ -186,94 +85,9 @@ class User extends MY_Controller {
         $this->load->view('template1', $data);
     }
 
-    public function PlanningDr() {
-        $data = array('title' => 'PlanningDr', 'content' => 'User/PlanningDr', 'view_data' => 'blank');
-        $this->load->view('template2', $data);
-    }
-
     public function dashboard() {
-        if ($this->is_logged_in('BDM')) {
-            $data = array();
-            $result = $this->Master_Model->BrandList($this->session->userdata('Division'));
-            $data['productList'] = $this->Master_Model->generateDropdown($result, 'id', 'Brand_Name');
-            if ($this->Product_Id == '-1' || $this->Product_Id == '') {
-                $data['tab1'] = "";
-            } else {
-                $data['tab1'] = $this->User_model->generateTabs($this->VEEVA_Employee_ID, $this->Product_Id);
-            }
-            if ($this->input->post()) {
-                $this->Product_Id = $this->input->post('Product_Id');
-                $this->session->set_userdata('Product_Id', $this->input->post('Product_Id'));
-                redirect('User/dashboard', 'refresh');
-            }
-            $month1 = date('n', strtotime('-1 month'));
-            $month2 = date('n', strtotime('-2 month'));
-            $month3 = date('n', strtotime('-3 month'));
-            $month4 = date('n', strtotime('-4 month'));
-            $current_month = date('n');
-            $year1 = date('Y', strtotime('-1 month'));
-            $year2 = date('Y', strtotime('-2 month'));
-            $year3 = date('Y', strtotime('-3 month'));
-            $year4 = date('Y', strtotime('-4 month'));
-            $current_year = date('Y');
-
-            $data['month1'] = $this->User_model->product_detail($this->VEEVA_Employee_ID, $this->Product_Id, $month1, $year1);
-            $data['month2'] = $this->User_model->product_detail($this->VEEVA_Employee_ID, $this->Product_Id, $month2, $year2);
-            $data['month3'] = $this->User_model->product_detail($this->VEEVA_Employee_ID, $this->Product_Id, $month3, $year3);
-            $data['month4'] = $this->User_model->product_detail($this->VEEVA_Employee_ID, $this->Product_Id, $month4, $year4);
-
-            $data['user1'] = $this->User_model->product_detail_user($this->VEEVA_Employee_ID, $this->Product_Id, $month1, $year1);
-            $data['user2'] = $this->User_model->product_detail_user($this->VEEVA_Employee_ID, $this->Product_Id, $month2, $year2);
-            $data['user3'] = $this->User_model->product_detail_user($this->VEEVA_Employee_ID, $this->Product_Id, $month3, $year3);
-            $data['user4'] = $this->User_model->product_detail_user($this->VEEVA_Employee_ID, $this->Product_Id, $month4, $year4);
-            $current_month_actual = $this->User_model->product_detail($this->VEEVA_Employee_ID, $this->Product_Id, $current_month, $current_year);
-            $current_month_planned = $this->User_model->kpi($this->VEEVA_Employee_ID, $this->Product_Id, $current_month, $current_year);
-
-            if ($this->Product_Id > 0) {
-                $target = $this->User_model->Rx_Target_month2($this->session->userdata('VEEVA_Employee_ID'), $this->Product_Id, $this->nextMonth);
-            }
-            $activity_planned = $this->User_model->activity_planned($this->VEEVA_Employee_ID, $this->Product_Id);
-            $activitya_actual = $this->User_model->activity_actual($this->VEEVA_Employee_ID, $this->Product_Id);
-            if (isset($target['target']) && $target['target'] > 0) {
-                $data['kpi1'] = ($current_month_actual['Actual_Rx'] / $target['target']) * 100;
-            } else {
-                $data['kpi1'] = 0;
-            }
-            if ($activity_planned ['activity_planned'] > 0) {
-                $data['kpi2'] = ($activitya_actual['activity_actual'] / $activity_planned ['activity_planned']) * 100;
-            } else {
-                $data['kpi2'] = 0;
-            }
-
-            $activity_planned = $this->User_model->activity_planned($this->VEEVA_Employee_ID, $this->Product_Id);
-            $activity_actual = $this->User_model->activity_actual($this->VEEVA_Employee_ID, $this->Product_Id);
-            $prio_dr = $this->User_model->prio_dr($this->VEEVA_Employee_ID, $this->Product_Id);
-            if ($activity_planned["activity_planned"] > 0) {
-                $data['tot'] = ($activity_actual['activity_actual'] / $activity_planned["activity_planned"]) * 100;
-            } else {
-                $data['tot'] = 0;
-            }
-            if ($this->Product_Id > 0) {
-                $data['show4'] = $this->User_model->Rx_Target_month2($this->session->userdata('VEEVA_Employee_ID'), $this->Product_Id, $this->nextMonth);
-                $data['Actual'] = $this->User_model->Actual_Rx_Count();
-            }
-            $target = isset($data['show4']['target']) && $data['show4']['Status'] == 'Submitted' ? $data['show4']['target'] : 0;
-            $Actual = isset($data['Actual']['Actual_Rx']) ? $data['Actual']['Actual_Rx'] : 0;
-            if ($target > 0) {
-                $data['tot1'] = ($Actual / $target) * 100;
-            } else {
-                $data['tot1'] = 0;
-            }
-            $data['Product_Id'] = $this->Product_Id;
-
-            $data['productList'] = $this->Master_Model->generateDropdown($result, 'id', 'Brand_Name', $this->Product_Id);
-
-            $data = array('title' => 'Main', 'content' => 'User/Main', 'view_data' => $data);
-            $this->load->view('template2', $data);
-            $result = $this->Doctor_Model->getDoctor($this->VEEVA_Employee_ID, $this->Individual_Type);
-            $this->doctorIds = $this->Doctor_Model->generateDoctorId($result);
-        } else {
-            $this->logout();
+        if ($this->is_logged_in('TM')) {
+            
         }
     }
 
