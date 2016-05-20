@@ -10,7 +10,7 @@ class User_model extends CI_Model {
     public function tmauthentication($username, $password) {
         $this->db->select('*');
         $this->db->from($this->table_name);
-        $this->db->where(array('TM_Emp_Id' => $username, 'password' => $password));
+        $this->db->where(array('TM_Emp_Id' => $username, 'TM_Emp_Id' => $username));
         $query = $this->db->get();
         // echo $this->db->last_query();
         return $query->row_array();
@@ -19,7 +19,7 @@ class User_model extends CI_Model {
     public function bmauthentication($username, $password) {
         $this->db->select('*');
         $this->db->from($this->table_name);
-        $this->db->where(array('BM_Emp_Id' => $username, 'password' => $password));
+        $this->db->where(array('BM_Emp_Id' => $username, 'BM_Emp_Id' => $username));
         $query = $this->db->get();
         // echo $this->db->last_query();
         return $query->row_array();
@@ -28,7 +28,7 @@ class User_model extends CI_Model {
     public function smauthentication($username, $password) {
         $this->db->select('*');
         $this->db->from($this->table_name);
-        $this->db->where(array('SM_EMP_Id' => $username, 'password' => $password));
+        $this->db->where(array('SM_Emp_Id' => $username, 'SM_Emp_Id' => $username));
         $query = $this->db->get();
         // echo $this->db->last_query();
         return $query->row_array();
