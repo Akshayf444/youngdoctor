@@ -54,7 +54,7 @@
 
             <!-- Main Header -->
             <header class="main-header">
-                <a href="<?php echo site_url('Admin/emp_view'); ?>" class="logo" style="background-color: #fff;"><b><img src="<?php echo asset_url() ?>images/Boehringer.png" ></b></a>
+                <a href="<?php echo site_url('User/dashboard'); ?>" class="logo" style="background-color: #fff;"><b><img src="<?php echo asset_url() ?>images/Boehringer.png" ></b></a>
                 <!-- Header Navbar -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
@@ -67,16 +67,19 @@
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <?php $CI = & get_instance(); ?>
-                                    <span class="hidden-xs"><?php echo isset($CI->Full_Name) ? $CI->Full_Name : ''; ?></span>
-                                </a>
+
+                                <?php $CI = & get_instance(); ?>
+                                <p style="padding-top: 10px;color: #FFFFFF" ><span class="hidden-xs"><?php echo isset($CI->Full_Name) ? $CI->Full_Name : ''; ?></span>
+                                    <a class="text-aqua" href="<?php echo site_url('User/logout'); ?>">
+                                        <span class="fa fa-power-off"></span>
+                                    </a>
+                                </p>
                                 <ul class="dropdown-menu">
                                     <?php //echo $CI->user_name; ?>                                   
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-right">
-                                            <a href="<?php echo site_url('User/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
