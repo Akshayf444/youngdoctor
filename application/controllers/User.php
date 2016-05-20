@@ -45,41 +45,41 @@ class User extends MY_Controller {
             $tmexist = $this->User_model->tmauthentication($username, $password);
 
             if (!empty($tmexist)) {
-                $this->session->set_userdata('Emp_Id') = $tmexist['TM_Emp_Id'];
-                $this->session->set_userdata('smswayid') = $tmexist['smsWayID'];
-                $this->session->set_userdata('Full_Name') = $tmexist['TM_Name'];
-                $this->session->set_userdata('TM_Emp_Id') = $tmexist['TM_Emp_Id'];
-                $this->session->set_userdata('BM_Emp_Id') = $tmexist['BM_Emp_Id'];
-                $this->session->set_userdata('SM_Emp_Id') = $tmexist['SM_Emp_Id'];
-                $this->session->set_userdata('SSM_Emp_Id') = $tmexist['SSM_Emp_Id'];
-                $this->session->set_userdata('Reporting_Id') = $tmexist['BM_Emp_Id'];
-                $this->session->set_userdata('Designation') = 'TM';
+                $_SESSION['Emp_Id'] = $tmexist['TM_Emp_Id'];
+                $_SESSION['smswayid'] = $tmexist['smsWayID'];
+                $_SESSION['Full_Name'] = $tmexist['TM_Name'];
+                $_SESSION['TM_Emp_Id'] = $tmexist['TM_Emp_Id'];
+                $_SESSION['BM_Emp_Id'] = $tmexist['BM_Emp_Id'];
+                $_SESSION['SM_Emp_Id'] = $tmexist['SM_Emp_Id'];
+                $_SESSION['SSM_Emp_Id'] = $tmexist['SSM_Emp_Id'];
+                $_SESSION['Reporting_Id'] = $tmexist['BM_Emp_Id'];
+                $_SESSION['Designation'] = 'TM';
                 redirect('User/dashboard', 'refresh');
             } else {
                 $bmexist = $this->User_model->bmauthentication($username, $password);
                 if (!empty($bmexist)) {
-                    $this->session->set_userdata('Emp_Id') = $bmexist['BM_Emp_Id'];
-                    $this->session->set_userdata('TM_Emp_Id') = $bmexist['TM_Emp_Id'];
-                    $this->session->set_userdata('BM_Emp_Id') = $bmexist['BM_Emp_Id'];
-                    $this->session->set_userdata('SM_Emp_Id') = $bmexist['SM_Emp_Id'];
-                    $this->session->set_userdata('SSM_Emp_Id') = $bmexist['SSM_Emp_Id'];
-                    $this->session->set_userdata('Reporting_Id') = $bmexist['SM_Emp_Id'];
-                    $this->session->set_userdata('Full_Name') = $bmexist['BM_Name'];
-                    $this->session->set_userdata('smswayid') = $bmexist['smsWayID'];
-                    $this->session->set_userdata('Designation') = 'BM';
+                    $_SESSION['Emp_Id'] = $bmexist['BM_Emp_Id'];
+                    $_SESSION['TM_Emp_Id'] = $bmexist['TM_Emp_Id'];
+                    $_SESSION['BM_Emp_Id'] = $bmexist['BM_Emp_Id'];
+                    $_SESSION['SM_Emp_Id'] = $bmexist['SM_Emp_Id'];
+                    $_SESSION['SSM_Emp_Id'] = $bmexist['SSM_Emp_Id'];
+                    $_SESSION['Reporting_Id'] = $bmexist['SM_Emp_Id'];
+                    $_SESSION['Full_Name'] = $bmexist['BM_Name'];
+                    $_SESSION['smswayid'] = $bmexist['smsWayID'];
+                    $_SESSION['Designation'] = 'BM';
                     redirect('User/dashboard', 'refresh');
                 } else {
                     $smexist = $this->User_model->smauthentication($username, $password);
                     if (!empty($smexist)) {
-                        $this->session->set_userdata('Emp_Id') = $smexist['SM_Emp_Id'];
-                        $this->session->set_userdata('TM_Emp_Id') = $smexist['TM_Emp_Id'];
-                        $this->session->set_userdata('BM_Emp_Id') = $smexist['BM_Emp_Id'];
-                        $this->session->set_userdata('SM_Emp_Id') = $smexist['SM_Emp_Id'];
-                        $this->session->set_userdata('SSM_Emp_Id') = $smexist['SSM_Emp_Id'];
-                        $this->session->set_userdata('Reporting_Id') = $smexist['SSM_Emp_Id'];
-                        $this->session->set_userdata('Full_Name') = $smexist['SM_Name'];
-                        $this->session->set_userdata('smswayid') = $smexist['smsWayID'];
-                        $this->session->set_userdata('Designation') = 'SM';
+                        $_SESSION['Emp_Id'] = $smexist['SM_Emp_Id'];
+                        $_SESSION['TM_Emp_Id'] = $smexist['TM_Emp_Id'];
+                        $_SESSION['BM_Emp_Id'] = $smexist['BM_Emp_Id'];
+                        $_SESSION['SM_Emp_Id'] = $smexist['SM_Emp_Id'];
+                        $_SESSION['SSM_Emp_Id'] = $smexist['SSM_Emp_Id'];
+                        $_SESSION['Reporting_Id'] = $smexist['SSM_Emp_Id'];
+                        $_SESSION['Full_Name'] = $smexist['SM_Name'];
+                        $_SESSION['smswayid'] = $smexist['smsWayID'];
+                        $_SESSION['Designation'] = 'SM';
                         redirect('User/dashboard', 'refresh');
                     } else {
                         
