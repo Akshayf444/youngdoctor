@@ -22,55 +22,57 @@ class User extends MY_Controller {
 
         $data = array();
         $message = '';
-        if ($this->input->post() && $this->input->post('username') == $this->input->post('password')) {
-            $username = $this->input->post('username');
-            $password = $this->input->post('password');
-            $tmexist = $this->User_model->tmauthentication($username, $password);
+        if ($this->input->post()) {
+            if ($this->input->post('username') == $this->input->post('password')) {
+                $username = $this->input->post('username');
+                $password = $this->input->post('password');
+                $tmexist = $this->User_model->tmauthentication($username, $password);
 
-            if (!empty($tmexist)) {
-                $this->session->set_userdata('Emp_Id', $tmexist['TM_Emp_Id']);
-                $this->session->set_userdata('smswayid', $tmexist['smsWayID']);
-                $this->session->set_userdata('Full_Name', $tmexist['TM_Name']);
-                $this->session->set_userdata('TM_Emp_Id', $tmexist['TM_Emp_Id']);
-                $this->session->set_userdata('BM_Emp_Id', $tmexist['BM_Emp_Id']);
-                $this->session->set_userdata('SM_Emp_Id', $tmexist['SM_Emp_Id']);
-                $this->session->set_userdata('SSM_Emp_Id', $tmexist['SSM_Emp_Id']);
-                $this->session->set_userdata('Reporting_Id', $tmexist['BM_Emp_Id']);
-                $this->session->set_userdata('Designation', 'TM');
-                redirect('User/addDoctor', 'refresh');
-            } else {
-                $bmexist = $this->User_model->bmauthentication($username, $password);
-                if (!empty($bmexist)) {
-                    $this->session->set_userdata('Emp_Id', $bmexist['BM_Emp_Id']);
-                    $this->session->set_userdata('TM_Emp_Id', $bmexist['TM_Emp_Id']);
-                    $this->session->set_userdata('BM_Emp_Id', $bmexist['BM_Emp_Id']);
-                    $this->session->set_userdata('SM_Emp_Id', $bmexist['SM_Emp_Id']);
-                    $this->session->set_userdata('SSM_Emp_Id', $bmexist['SSM_Emp_Id']);
-                    $this->session->set_userdata('Reporting_Id', $bmexist['SM_Emp_Id']);
-                    $this->session->set_userdata('Full_Name', $bmexist['BM_Name']);
-                    $this->session->set_userdata('smswayid', $bmexist['smsWayID']);
-                    $this->session->set_userdata('Designation', 'BM');
-                    redirect('User/dashboard', 'refresh');
+                if (!empty($tmexist)) {
+                    $this->session->set_userdata('Emp_Id', $tmexist['TM_Emp_Id']);
+                    $this->session->set_userdata('smswayid', $tmexist['smsWayID']);
+                    $this->session->set_userdata('Full_Name', $tmexist['TM_Name']);
+                    $this->session->set_userdata('TM_Emp_Id', $tmexist['TM_Emp_Id']);
+                    $this->session->set_userdata('BM_Emp_Id', $tmexist['BM_Emp_Id']);
+                    $this->session->set_userdata('SM_Emp_Id', $tmexist['SM_Emp_Id']);
+                    $this->session->set_userdata('SSM_Emp_Id', $tmexist['SSM_Emp_Id']);
+                    $this->session->set_userdata('Reporting_Id', $tmexist['BM_Emp_Id']);
+                    $this->session->set_userdata('Designation', 'TM');
+                    redirect('User/addDoctor', 'refresh');
                 } else {
-                    $smexist = $this->User_model->smauthentication($username, $password);
-                    if (!empty($smexist)) {
-                        $this->session->set_userdata('Emp_Id', $smexist['SM_Emp_Id']);
-                        $this->session->set_userdata('TM_Emp_Id', $smexist['TM_Emp_Id']);
-                        $this->session->set_userdata('BM_Emp_Id', $smexist['BM_Emp_Id']);
-                        $this->session->set_userdata('SM_Emp_Id', $smexist['SM_Emp_Id']);
-                        $this->session->set_userdata('SSM_Emp_Id', $smexist['SSM_Emp_Id']);
-                        $this->session->set_userdata('Reporting_Id', $smexist['SSM_Emp_Id']);
-                        $this->session->set_userdata('Full_Name', $smexist['SM_Name']);
-                        $this->session->set_userdata('smswayid', $smexist['smsWayID']);
-                        $this->session->set_userdata('Designation', 'SM');
-                        redirect('User/dashboard', 'refresh');
+                    $bmexist = $this->User_model->bmauthentication($username, $password);
+                    if (!empty($bmexist)) {
+                        $this->session->set_userdata('Emp_Id', $bmexist['BM_Emp_Id']);
+                        $this->session->set_userdata('TM_Emp_Id', $bmexist['TM_Emp_Id']);
+                        $this->session->set_userdata('BM_Emp_Id', $bmexist['BM_Emp_Id']);
+                        $this->session->set_userdata('SM_Emp_Id', $bmexist['SM_Emp_Id']);
+                        $this->session->set_userdata('SSM_Emp_Id', $bmexist['SSM_Emp_Id']);
+                        $this->session->set_userdata('Reporting_Id', $bmexist['SM_Emp_Id']);
+                        $this->session->set_userdata('Full_Name', $bmexist['BM_Name']);
+                        $this->session->set_userdata('smswayid', $bmexist['smsWayID']);
+                        $this->session->set_userdata('Designation', 'BM');
+                        redirect('User/view_doctor', 'refresh');
                     } else {
-                        $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Incorrect Username/Password', 'danger'));
+                        $smexist = $this->User_model->smauthentication($username, $password);
+                        if (!empty($smexist)) {
+                            $this->session->set_userdata('Emp_Id', $smexist['SM_Emp_Id']);
+                            $this->session->set_userdata('TM_Emp_Id', $smexist['TM_Emp_Id']);
+                            $this->session->set_userdata('BM_Emp_Id', $smexist['BM_Emp_Id']);
+                            $this->session->set_userdata('SM_Emp_Id', $smexist['SM_Emp_Id']);
+                            $this->session->set_userdata('SSM_Emp_Id', $smexist['SSM_Emp_Id']);
+                            $this->session->set_userdata('Reporting_Id', $smexist['SSM_Emp_Id']);
+                            $this->session->set_userdata('Full_Name', $smexist['SM_Name']);
+                            $this->session->set_userdata('smswayid', $smexist['smsWayID']);
+                            $this->session->set_userdata('Designation', 'SM');
+                            redirect('User/dashboard', 'refresh');
+                        } else {
+                            $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Incorrect Username/Password', 'danger'));
+                        }
                     }
                 }
+            } else {
+                $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Incorrect Username/Password', 'danger'));
             }
-        } else {
-            $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Incorrect Username/Password', 'danger'));
         }
         $data = array('title' => 'Login', 'content' => 'User/login', 'view_data' => $data);
         $this->load->view('template1', $data);
@@ -149,22 +151,28 @@ class User extends MY_Controller {
     }
 
     public function view_doctor() {
-
-        $conditions = array(
-            'DrStatus = 1', 'delstatus = 1'
-        );
-
+        $conditions = array();
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
+            $conditions = array(
+                'DrStatus = 1', 'delstatus = 1'
+            );
+
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'TM_EmpID = ' . $tm_id);
         }
         if ($this->is_logged_in('BM')) {
             $BM_Emp_Id = $this->Emp_Id;
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
-            $data['tmlist'] = '<select class="form-control" name="TM_Emp_Id"><option >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name') . '</select>';
+            $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0" >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name') . '</select>';
+            if ($this->input->get('TM_Emp_Id') > 0) {
+                $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
+            }
         }
 
-        $data['show'] = $this->User_model->getDoctor($conditions);
+        if (!empty($conditions)) {
+            $data['show'] = $this->User_model->getDoctor($conditions);
+        }
+
         $data = array('title' => 'Young Doctor List', 'content' => 'User/view_doctor', 'view_data' => $data, 'page_title' => ' Doctor List');
         $this->load->view('template3', $data);
     }
@@ -178,21 +186,28 @@ class User extends MY_Controller {
     }
 
     public function view_pgdoctor() {
-
-        $conditions = array(
-            'DrStatus = 2', 'delstatus = 1'
-        );
-
+        $data['Institution'] = null;
+        $conditions = array();
         if ($this->is_logged_in('BM')) {
             $BM_Emp_Id = $this->Emp_Id;
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
-            $data['tmlist'] = '<select class="form-control" name="TM_Emp_Id"><option >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name') . '</select>';
+            $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name') . '</select>';
+            if ($this->input->get('TM_Emp_Id') > 0) {
+                $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
+            }
         }
 
-        if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
+        if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id') != '') {
+            $conditions = array(
+                'DrStatus = 2', 'delstatus = 1'
+            );
+
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             $result = $this->User_model->find_Institution($tm_id);
             $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution');
+            if ($this->input->get('id') != '') {
+                $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution', $this->input->get('id'));
+            }
             array_push($conditions, 'TM_EmpID = ' . $tm_id);
         }
 
@@ -201,7 +216,10 @@ class User extends MY_Controller {
             array_push($conditions, "Institution = '$institute' ");
         }
 
-        $data['show'] = $this->User_model->getDoctor($conditions);
+        if (!empty($conditions)) {
+            $data['show'] = $this->User_model->getDoctor($conditions);
+        }
+
         $data = array('title' => 'PG Doctor List', 'content' => 'User/view_pgdoctor', 'view_data' => $data, 'page_title' => 'PG Doctor List');
         $this->load->view('template3', $data);
     }

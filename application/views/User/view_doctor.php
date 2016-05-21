@@ -1,24 +1,21 @@
 <div class="row">
-    <?php if ($this->session->userdata('Designation') == 'BM') { ?>
-        <div class="col-xs-12 panel">
+    <div class="col-xs-12 ">
+        <div class="panel">
             <?php
             $attributes = array('method' => 'GET');
             echo form_open('User/view_pgdoctor', $attributes);
             ?>
-
-            <?php echo isset($tmlist) ? $tmlist : ''; ?>
-            <button type="submit" class="btn btn-primary">Fetch</button>
+            <?php if ($this->session->userdata('Designation') == 'BM') { ?>
+                <?php echo isset($tmlist) ? $tmlist : ''; ?>
+                <button type="submit" class="btn btn-primary">Fetch</button>
+                <?php
+            }
+            ?>
+            <a download="Doctor<?php echo date('dM g-i-a');?>.xls" class="btn btn-success pull" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export</a>
             </form>
-
         </div>
-        <?php
-    }
-    ?>
-
-    <div class="col-lg-12">
-        <a download="Doctor<?php // echo date('dM g-i-a');               ?>.xls" class="btn btn-success  " href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export to Excel </a>
     </div>
-    <div class="col-lg-12" id="no-more-tables">
+    <div class="col-lg-12 table-responsive" >
         <table class="table table-bordered table-hover panel" id="datatable">
             <thead>
                 <tr>
@@ -26,7 +23,7 @@
                     <th>State</th>
                     <th>Region</th>
                     <th>Doctor Name</th>
-                    <th>MSL_Code</th>
+                    <th>MSL Code</th>
                     <th>Address</th>
                     <th>Passout College</th>
                     <th>Degree</th>
