@@ -136,7 +136,7 @@
                 ?>
 
                 <!-- Main content -->
-                <section class="content" style="overflow: scroll;">
+                <section class="content">
                     <?php
                     echo $this->session->userdata('message') ? $this->session->userdata('message') : '';
                     $this->session->unset_userdata('message');

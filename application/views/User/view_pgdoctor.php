@@ -1,22 +1,25 @@
-<div class="panel panel-default">
-    <div class="panel-body ">
-        <?php
-        $attributes = array('method' => 'GET');
-        echo form_open('User/view_pgdoctor', $attributes);
-        ?>
-        <select name="id" class="btn btn-default">
-            <option value="-1">Select Institution </option>
-            <?php echo $Institution; ?>
-        </select>
-        <?php echo isset($tmlist) ? $tmlist : ''; ?>
-        <button type="submit" class="btn btn-primary">Fetch</button>
-        </form>
-
+<div class="row">
+    <div class="col-xs-12 ">
+        <div class="panel">
+            <?php
+            $attributes = array('method' => 'GET');
+            echo form_open('User/view_pgdoctor', $attributes);
+            ?>
+            <select name="id" class="btn btn-default">
+                <option value="">Select Institution </option>
+                <?php echo $Institution; ?>
+            </select>
+            <?php echo isset($tmlist) ? $tmlist : ''; ?>
+            <?php echo isset($bmlist) ? $bmlist : ''; ?>
+            <a download="Doctor<?php echo date('dM g-i-a'); ?>.xls" class="btn btn-success" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export</a>
+            <button type="submit" class="btn btn-primary">Fetch</button>
+            </form>
+            
+        </div>
     </div>
 </div>
-<a download="Doctor<?php // echo date('dM g-i-a');            ?>.xls" class="btn btn-success  " href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export to Excel </a>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 table-responsive" >
         <table class="table table-bordered table-hover panel" id="datatable">
             <thead>
                 <tr>
@@ -24,12 +27,12 @@
                     <th>State</th>
                     <th>Region</th>
                     <th>Doctor Name</th>
-                    <th>MSL_Code</th>
+                    <th>MSL Code</th>
                     <th>address</th>
                     <th>Institution</th>
-                    <th>Mobile_Number</th>
+                    <th>Mobile Number</th>
                     <th>email</th> 
-                    <th>Years_Practice</th> 
+                    <th>Years Of Practice</th> 
                     <th>DOB</th>
                     <th>Clinic Anniversary</th>
                     <th>Name Of Clipa Services</th>
