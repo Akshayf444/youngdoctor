@@ -28,6 +28,7 @@
         <link href="<?php echo asset_url(); ?>css/chosen.min.css" rel="stylesheet" type="text/css"/>
         <script src="<?php echo asset_url(); ?>js/chosen.jquery.min.js" type="text/javascript"></script>
         <script src="<?php echo asset_url(); ?>js/chosen.proto.js" type="text/javascript"></script>
+        <link href="<?php echo asset_url(); ?>css/responsiveTable.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript">
             var config = {
                 '.chosen-select': {},
@@ -142,7 +143,7 @@
                     ?>
                     <?php $this->load->view($content, $view_data); ?>
                 </section>
-            </div><!-- Bootstrap 3.3.2 JS -->
+            </div>
             <script src="<?php echo asset_url() ?>dashboard/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
             <script src='<?php echo asset_url() ?>js/jquery.bootstrap-growl.min.js' type='text/javascript'></script>
             <!-- AdminLTE App -->
