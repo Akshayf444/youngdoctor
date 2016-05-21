@@ -19,7 +19,6 @@ class User extends MY_Controller {
     }
 
     public function index() {
-
         $data = array();
         $message = '';
         if ($this->input->post()) {
@@ -27,7 +26,6 @@ class User extends MY_Controller {
                 $username = $this->input->post('username');
                 $password = $this->input->post('password');
                 $tmexist = $this->User_model->tmauthentication($username, $password);
-
                 if (!empty($tmexist)) {
                     $this->session->set_userdata('Emp_Id', $tmexist['TM_Emp_Id']);
                     $this->session->set_userdata('smswayid', $tmexist['smsWayID']);
@@ -85,7 +83,6 @@ class User extends MY_Controller {
     }
 
     public function addDoctor() {
-
         if ($this->is_logged_in('TM')) {
             if ($this->input->post()) {
                 $data = array(
@@ -157,7 +154,6 @@ class User extends MY_Controller {
             $conditions = array(
                 'DrStatus = 1', 'delstatus = 1'
             );
-
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'TM_EmpID = ' . $tm_id);
         }
@@ -169,7 +165,6 @@ class User extends MY_Controller {
                 $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0"  >Select BM</option>' . $this->Master_Model->generateDropdown($tmlist, 'BM_Emp_Id', 'BM_Name', $this->input->get('BM_Emp_Id')) . '</select>';
             }
         }
-
         if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
             $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
@@ -178,11 +173,9 @@ class User extends MY_Controller {
                 $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
             }
         }
-
         if (!empty($conditions)) {
             $data['show'] = $this->User_model->getDoctor($conditions);
         }
-
         $data = array('title' => 'Young Doctor List', 'content' => 'User/view_doctor', 'view_data' => $data, 'page_title' => ' Doctor List');
         $this->load->view('template3', $data);
     }
@@ -191,24 +184,20 @@ class User extends MY_Controller {
         $id = $_GET['id'];
         $data = array('delstatus' => 0);
         $this->User_model->del_youngdoc($id, $data);
-
         redirect('User/view_doctor', 'refresh');
     }
 
     public function view_pgdoctor() {
         $data['Institution'] = null;
         $conditions = array();
-
         if ($this->is_logged_in('SM')) {
             $SM_Emp_Id = $this->Emp_Id;
             $tmlist = $this->User_model->getEmployee(array('SM_Emp_Id = ' . $SM_Emp_Id));
-
             $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0" >Select BM</option>' . $this->Master_Model->generateDropdown($tmlist, 'BM_Emp_Id', 'BM_Name') . '</select>';
             if ($this->input->get('TM_Emp_Id') > 0) {
                 $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0"  >Select BM</option>' . $this->Master_Model->generateDropdown($tmlist, 'BM_Emp_Id', 'BM_Name', $this->input->get('BM_Emp_Id')) . '</select>';
             }
         }
-
         if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
             $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
@@ -217,12 +206,10 @@ class User extends MY_Controller {
                 $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
             }
         }
-
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id') != '') {
             $conditions = array(
                 'DrStatus = 2', 'delstatus = 1'
             );
-
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             $result = $this->User_model->find_Institution($tm_id);
             $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution');
@@ -231,16 +218,13 @@ class User extends MY_Controller {
             }
             array_push($conditions, 'TM_EmpID = ' . $tm_id);
         }
-
         if ($this->input->get('id') != '') {
             $institute = $this->input->get('id');
             array_push($conditions, "Institution = '$institute' ");
         }
-
         if (!empty($conditions)) {
             $data['show'] = $this->User_model->getDoctor($conditions);
         }
-
         $data = array('title' => 'PG Doctor List', 'content' => 'User/view_pgdoctor', 'view_data' => $data, 'page_title' => 'PG Doctor List');
         $this->load->view('template3', $data);
     }
@@ -249,7 +233,6 @@ class User extends MY_Controller {
         $id = $_GET['id'];
         $data = array('delstatus' => 0);
         $this->User_model->del_youngdoc($id, $data);
-
         redirect('User/view_pgdoctor', 'refresh');
     }
 

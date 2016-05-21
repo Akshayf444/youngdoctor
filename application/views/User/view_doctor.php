@@ -65,20 +65,23 @@
                             <td data-title="SM"><?php echo $row->SM_Name; ?></td>
 
 
-                            <td data-title="Action">  
-                                <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/youngdoc_del?id=') . $row->DoctorId; ?>')"></a> 
-                                <!--<a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/youngdoc_update?id=') . $row->DoctorId; ?>';"></a>-->                                 
+                 <td>  
+                            <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/youngdoc_del?id=') . $row->DoctorId; ?>')"></a> 
+                        <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/update_doc?id=') . $row->DoctorId; ?>';"></a>                               
 
-                            </td>
+                        </td>
 
-                        </tr>
-                        <?php
-                    endforeach;
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
+                    </tr>
+                    <?php
+                endforeach;
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
+                     
+
 </div>
 <script>
     function deletedoc(url) {
