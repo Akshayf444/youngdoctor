@@ -1,3 +1,4 @@
+<div class="row">
 <div class="col-lg-12">
 
     <a download="Doctor<?php // echo date('dM g-i-a');         ?>.xls" class="btn btn-success  " href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export to Excel </a>
@@ -68,7 +69,7 @@
         </tbody>
     </table>
 </div>
-
+</div>
 <script>
     function deletedoc(url) {
         var r = confirm("Are you sure you want to delete");

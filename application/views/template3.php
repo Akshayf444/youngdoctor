@@ -71,7 +71,7 @@
                                 <?php $CI = & get_instance(); ?>
                                 <p style="padding-top: 10px;color: #FFFFFF" ><span class=""><?php echo isset($CI->Full_Name) ? $CI->Full_Name : ''; ?></span>
                                     <a class="text-aqua" href="<?php echo site_url('User/logout'); ?>">
-                                        <span class="fa fa-power-off"></span>
+                                        <span class="fa fa-2x fa-power-off"></span>
                                     </a>
                                 </p>
                                 <ul class="dropdown-menu">
