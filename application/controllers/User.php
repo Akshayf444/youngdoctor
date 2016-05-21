@@ -160,8 +160,17 @@ class User extends MY_Controller {
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'TM_EmpID = ' . $tm_id);
         }
-        if ($this->is_logged_in('BM')) {
-            $BM_Emp_Id = $this->Emp_Id;
+        if ($this->is_logged_in('SM')) {
+            $SM_Emp_Id = $this->Emp_Id;
+            $tmlist = $this->User_model->getEmployee(array('SM_Emp_Id = ' . $SM_Emp_Id));
+            $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0" >Select BM</option>' . $this->Master_Model->generateDropdown($tmlist, 'BM_Emp_Id', 'BM_Name') . '</select>';
+            if ($this->input->get('TM_Emp_Id') > 0) {
+                $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0"  >Select BM</option>' . $this->Master_Model->generateDropdown($tmlist, 'BM_Emp_Id', 'BM_Name', $this->input->get('BM_Emp_Id')) . '</select>';
+            }
+        }
+
+        if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
+            $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
             $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0" >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name') . '</select>';
             if ($this->input->get('TM_Emp_Id') > 0) {
@@ -188,8 +197,19 @@ class User extends MY_Controller {
     public function view_pgdoctor() {
         $data['Institution'] = null;
         $conditions = array();
-        if ($this->is_logged_in('BM')) {
-            $BM_Emp_Id = $this->Emp_Id;
+
+        if ($this->is_logged_in('SM')) {
+            $SM_Emp_Id = $this->Emp_Id;
+            $tmlist = $this->User_model->getEmployee(array('SM_Emp_Id = ' . $SM_Emp_Id));
+
+            $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0" >Select BM</option>' . $this->Master_Model->generateDropdown($tmlist, 'BM_Emp_Id', 'BM_Name') . '</select>';
+            if ($this->input->get('TM_Emp_Id') > 0) {
+                $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0"  >Select BM</option>' . $this->Master_Model->generateDropdown($tmlist, 'BM_Emp_Id', 'BM_Name', $this->input->get('BM_Emp_Id')) . '</select>';
+            }
+        }
+
+        if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
+            $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
             $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name') . '</select>';
             if ($this->input->get('TM_Emp_Id') > 0) {

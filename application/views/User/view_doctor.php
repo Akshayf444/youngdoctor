@@ -5,8 +5,9 @@
             $attributes = array('method' => 'GET');
             echo form_open('User/view_pgdoctor', $attributes);
             ?>
-            <?php if ($this->session->userdata('Designation') == 'BM') { ?>
+            <?php if ($this->session->userdata('Designation') == 'BM' || $this->session->userdata('Designation') == 'SM' ) { ?>
                 <?php echo isset($tmlist) ? $tmlist : ''; ?>
+                <?php echo isset($bmlist) ? $bmlist : ''; ?>
                 <button type="submit" class="btn btn-primary">Fetch</button>
                 <?php
             }
