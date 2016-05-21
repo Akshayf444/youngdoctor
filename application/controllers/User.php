@@ -152,6 +152,7 @@ class User extends MY_Controller {
 
     public function view_doctor() {
         $conditions = array();
+        $data = array();
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
             $conditions = array(
                 'DrStatus = 1', 'delstatus = 1'

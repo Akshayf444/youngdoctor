@@ -18,21 +18,21 @@ echo form_open('User/addDoctor');
         <input type="text" class="form-control" value="" name="email" placeholder="Email"/> </div>
     <div class="form-group">
         <input type="text"  class="form-control" name="Degree" placeholder="Degree" >
-                </div>	    
+    </div>	    
     <div class="form-group">
         <input type="text"  class="form-control" name="Passoutcollege " placeholder=" Passout College" >
-           
-        </div>	
+
+    </div>	
     <div class="form-group">
         <input type="text"  class="form-control" name="Region" placeholder="Region" >
-           
-        </div>	
+
+    </div>	
     <div class="form-group">
         <input type="text"  class="form-control" name="State" placeholder="State" >
-                </div>	
-     
+    </div>	
+
     <div class="form-group">
-       <select  class="form-control" name="Years_Practice" >
+        <select  class="form-control" name="Years_Practice" >
             <option value="">Select Years Of Practice</option>
             <option>0</option>
             <option>1</option>
@@ -40,8 +40,8 @@ echo form_open('User/addDoctor');
             <option>3</option>
             <option>4</option>
             <option>5</option>
-               </select> 
-        </div>
+        </select> 
+    </div>
     <div class="form-group">
         <input type="text" class="form-control" value="" id="date" name="DOB" placeholder="Date Of Birth"/></div>
     <div class="form-group">
@@ -50,8 +50,8 @@ echo form_open('User/addDoctor');
         <input type="text" class="form-control" value="" name="ClipaSerice" placeholder=" Name Of Clipa Services"/> </div>
     <div class="form-group">
         FITB DONE &nbsp; <input type="radio" name="FITB" value="Yes" />Yes
-         <input type="radio" name="FITB" value="No" /> No
-        
+        <input type="radio" name="FITB" value="No" /> No
+
     </div>
 
 
@@ -61,101 +61,100 @@ echo form_open('User/addDoctor');
 </form>
 <script>
     $(function () {
-    $("#date1").datepicker({
-    changeMonth: true,
+        $("#date1").datepicker({
+            changeMonth: true,
             changeYear: true,
             dateFormat: 'yy-mm-dd'
-    });
-           
-            $("#date").datepicker({
+        });
+
+        $("#date").datepicker({
             changeMonth: true,
-                    changeYear: true,
-                    dateFormat: 'yy-mm-dd'
-            });
-            });</script>
+            changeYear: true,
+            dateFormat: 'yy-mm-dd'
+        });
+    });</script>
 
 <script src="<?php echo asset_url() ?>js/formValidation.min.js" type="text/javascript"></script>
 <script src="<?php echo asset_url() ?>js/bootstrap.min.js" type="text/javascript"></script>
 <script>
-            $('document').ready(function () {
-    $('#valid').formValidation({
-    icon: {
-    },
-            fields: {
-            Doctor_Name: {
-            validators: {
-            notEmpty: {
-            message: 'The VEEVA Employee ID is required'
-            }
-            }
+    $('document').ready(function () {
+        $('#valid').formValidation({
+            icon: {
             },
-                    MSL_Code: {
+            fields: {
+                Doctor_Name: {
                     validators: {
-                    notEmpty: {
-                    message: 'The Local Employee ID is required'
+                        notEmpty: {
+                            message: 'The VEEVA Employee ID is required'
+                        }
                     }
-                    }
-                    },
-                    address: {
+                },
+                MSL_Code: {
                     validators: {
-                    notEmpty: {
-                    message: 'The  First Name is required'
+                        notEmpty: {
+                            message: 'The Local Employee ID is required'
+                        }
                     }
-                    }
-                    },
-                    Moblie_Number: {
+                },
+                address: {
                     validators: {
-                    notEmpty: {
-                    message: 'Please Enter Username'
+                        notEmpty: {
+                            message: 'The  First Name is required'
+                        }
                     }
-                    }
-                    },
-                    email: {
+                },
+                Moblie_Number: {
                     validators: {
-                    notEmpty: {
-                    message: 'The Last Name is required'
+                        notEmpty: {
+                            message: 'Please Enter Username'
+                        }
                     }
-                    }
-                    },
-                    Years_Practice: {
+                },
+                email: {
                     validators: {
-                    notEmpty: {
-                    message: 'The Full Name is required'
+                        notEmpty: {
+                            message: 'The Last Name is required'
+                        }
                     }
-                    }
-                    },
-                    DOB: {
+                },
+                Years_Practice: {
                     validators: {
-                    notEmpty: {
-                    message: 'The Territory is required'
+                        notEmpty: {
+                            message: 'The Full Name is required'
+                        }
                     }
-                    }
-                    },
-                    ANNIVERSARY: {
+                },
+                DOB: {
                     validators: {
-                    notEmpty: {
-                    message: 'The Email Id is required'
+                        notEmpty: {
+                            message: 'The Territory is required'
+                        }
                     }
-                    }
-                    },
-                    ClipaSerice: {
+                },
+                ANNIVERSARY: {
                     validators: {
-                    notEmpty: {
-                    message: 'Please Select Division'
+                        notEmpty: {
+                            message: 'The Email Id is required'
+                        }
                     }
-                    }
-                    },
-                
-                    FITB: {
+                },
+                ClipaSerice: {
                     validators: {
-                    notEmpty: {
-                    message: 'The  Reporting To is required'
+                        notEmpty: {
+                            message: 'Please Select Division'
+                        }
                     }
+                },
+                FITB: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The  Reporting To is required'
+                        }
                     }
-                    },
+                },
             }
 
-    });
+        });
     });
 </script>
 
