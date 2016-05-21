@@ -154,9 +154,14 @@ class User extends MY_Controller {
             'DrStatus = 1', 'delstatus = 1'
         );
 
-        if ($this->is_logged_in('TM')) {
-            $tm_id = $this->TM_Emp_Id;
+        if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
+            $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
             array_push($conditions, 'TM_EmpID = ' . $tm_id);
+        }
+        if ($this->is_logged_in('BM')) {
+            $BM_Emp_Id = $this->Emp_Id;
+            $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
+            $data['tmlist'] = '<select class="form-control" name="TM_Emp_Id"><option >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name') . '</select>';
         }
 
         $data['show'] = $this->User_model->getDoctor($conditions);
