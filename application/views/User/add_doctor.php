@@ -85,63 +85,63 @@ echo form_open('User/addDoctor');
             Doctor_Name: {
             validators: {
             notEmpty: {
-            message: 'The VEEVA Employee ID is required'
+            message: 'The Doctor_Name ID is required'
             }
             }
             },
                     MSL_Code: {
                     validators: {
                     notEmpty: {
-                    message: 'The Local Employee ID is required'
+                    message: 'The MSL_Code is required'
                     }
                     }
                     },
                     address: {
                     validators: {
                     notEmpty: {
-                    message: 'The  First Name is required'
+                    message: 'The  Address is required'
                     }
                     }
                     },
                     Moblie_Number: {
                     validators: {
                     notEmpty: {
-                    message: 'Please Enter Username'
+                    message: 'Moblie_Numbe'
                     }
                     }
                     },
                     email: {
                     validators: {
                     notEmpty: {
-                    message: 'The Last Name is required'
+                    message: 'The Last Name is required is required'
                     }
                     }
                     },
                     Years_Practice: {
                     validators: {
                     notEmpty: {
-                    message: 'The Full Name is required'
+                    message: 'The Years_Practice is required'
                     }
                     }
                     },
                     DOB: {
                     validators: {
                     notEmpty: {
-                    message: 'The Territory is required'
+                    message: 'The DOB is required'
                     }
                     }
                     },
                     ANNIVERSARY: {
                     validators: {
                     notEmpty: {
-                    message: 'The Email Id is required'
+                    message: 'The ANNIVERSARY is required'
                     }
                     }
                     },
                     ClipaSerice: {
                     validators: {
                     notEmpty: {
-                    message: 'Please Select Division'
+                    message: 'ClipaService is required'
                     }
                     }
                     },
@@ -149,7 +149,7 @@ echo form_open('User/addDoctor');
                     FITB: {
                     validators: {
                     notEmpty: {
-                    message: 'The  Reporting To is required'
+                    message: 'FITB is required'
                     }
                     }
                     },
