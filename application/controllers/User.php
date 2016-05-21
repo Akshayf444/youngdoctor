@@ -176,6 +176,19 @@ class User extends MY_Controller {
         $this->load->view('template3', $data);
     }
 
+    
+      public function BM_View() {
+        $tm_id = $this->TM_Emp_Id;
+        $result = $this->User_model->find_Institution($tm_id);
+        $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution');
+        if ($this->input->get('id') != '') {
+            $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution', $this->input->get('id'));
+            $data['show'] = $this->User_model->namefilter($tm_id, $this->input->get('id'));
+        }
+        $data = array('title' => 'PG Doctor List', 'content' => 'User/bm_view', 'view_data' => $data, 'page_title' => ' Doctor List');
+        $this->load->view('template3', $data);
+    }
+    
     public function pgdoc_del() {
         $id = $_GET['id'];
         $data = array('delstatus' => 0);
