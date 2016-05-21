@@ -39,6 +39,43 @@ class User_model extends CI_Model {
         return $this->db->insert_id;
     }
 
+    public function view_doctor($tm_id) {
+        $sql = "SELECT dm.*,em.TM_Emp_Id,em.BM_Name,em.SM_Name FROM tbl_doctor dm Inner JOIN  tbl_employee_master  em ON dm.TM_EmpID=em.TM_Emp_Id  where dm.delstatus='1' and dm.DrStatus='1' and dm.TM_EmpID='$tm_id' ";
+        $query = $this->db->query($sql);
+
+        return $query->result();
+    }
+
+    public function del_youngdoc($id, $data) {
+        $query = $this->db->where('DoctorId', $id);
+        $query = $this->db->update('tbl_doctor', $data);
+        return $query;
+    }
+
+    public function view_pgdoctor($tm_id) {
+        $sql = "SELECT dm.*,em.TM_Emp_Id,em.BM_Name,em.SM_Name FROM tbl_doctor dm Inner JOIN  tbl_employee_master  em ON dm.TM_EmpID=em.TM_Emp_Id  where dm.delstatus='1' and dm.DrStatus='2' and dm.TM_EmpID='$tm_id' ";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+       public function find_Institution($tm_id) {
+        $sql = "SELECT DoctorId, Institution FROM tbl_doctor where TM_EmpID='$tm_id' And DrStatus='2' ";
+        $query = $this->db->query($sql);
+       
+        return $query->result();
+    }
+  public function namefilter($tm_id,$Institution) {
+        $sql = "SELECT dm.*,em.TM_Emp_Id,em.BM_Name,em.SM_Name FROM tbl_doctor dm Inner JOIN  tbl_employee_master  em ON dm.TM_EmpID=em.TM_Emp_Id  where dm.delstatus='1' and dm.DrStatus='2' and dm.TM_EmpID='$tm_id' and dm.Institution='$Institution' "; 
+        $query = $this->db->query($sql);
+      
+        return $query->result();
+    }
+
+    public function del_pgdoc($id, $data) {
+        $query = $this->db->where('DoctorId', $id);
+        $query = $this->db->update('tbl_doctor', $data);
+        return $query;
+    }
+
     function calculateMonth($current_month, $no_of_month) {
         $month = $current_month - $no_of_month;
         if ($month <= 0) {

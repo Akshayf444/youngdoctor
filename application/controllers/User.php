@@ -97,6 +97,11 @@ class User extends MY_Controller {
                     'FITB' => $this->input->post('FITB'),
                     'ANNIVERSARY' => $this->input->post('ANNIVERSARY'),
                     'email' => $this->input->post('email'),
+                    'Degree' => $this->input->post('Degree'),
+                    'Passoutcollege' => $this->input->post('Passoutcollege'),
+                    'Region' => $this->input->post('Region'),
+                    'State' => $this->input->post('state'),
+                    'delstatus' => 1,
                     'DrStatus' => 1,
                     'TM_EmpID' => $this->Emp_Id,
                     'smswayid' => $this->smswayid,
@@ -125,6 +130,10 @@ class User extends MY_Controller {
                     'FITB' => $this->input->post('FITB'),
                     'ANNIVERSARY' => $this->input->post('ANNIVERSARY'),
                     'email' => $this->input->post('email'),
+                    'Institution' => $this->input->post('Institution'),
+                    'Region' => $this->input->post('Region'),
+                    'State' => $this->input->post('state'),
+                    'delstatus' => 1,
                     'DrStatus' => 2,
                     'TM_EmpID' => $this->Emp_Id,
                     'smswayid' => $this->smswayid,
@@ -132,11 +141,50 @@ class User extends MY_Controller {
                 $this->User_model->addDoctor($data);
                 redirect('User/addpgDoctor', 'refresh');
             }
-            $data = array('title' => 'Add PG Doctor', 'content' => 'User/add_pgdoctor', 'view_data' => 'blank');
+            $data = array('title' => 'Add PG Doctor', 'content' => 'User/pg_doctor', 'view_data' => 'blank', 'page_title' => 'Add PG Doctor');
             $this->load->view('template3', $data);
         } else {
             $this->logout();
         }
+    }
+
+    public function view_doctor() {
+        $tm_id = $this->TM_Emp_Id;
+
+
+        $data['show'] = $this->User_model->view_doctor($tm_id);
+        $data = array('title' => 'Young Doctor List', 'content' => 'User/view_doctor', 'view_data' => $data, 'page_title' => ' Doctor List');
+        $this->load->view('template3', $data);
+    }
+
+    public function youngdoc_del() {
+        $id = $_GET['id'];
+        $data = array('delstatus' => 0);
+        $this->User_model->del_youngdoc($id, $data);
+
+        redirect('User/view_doctor', 'refresh');
+    }
+
+    public function view_pgdoctor() {
+        $tm_id = $this->TM_Emp_Id;
+        $result = $this->User_model->find_Institution($tm_id);
+        $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution');
+        if ($this->input->get('id') != '') {
+            $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution', $this->input->get('id'));
+            $data['show'] = $this->User_model->namefilter($tm_id, $this->input->get('id'));
+        } else {
+            $data['show'] = $this->User_model->view_pgdoctor($tm_id);
+        }
+        $data = array('title' => 'PG Doctor List', 'content' => 'User/view_pgdoctor', 'view_data' => $data, 'page_title' => 'PG Doctor List');
+        $this->load->view('template3', $data);
+    }
+
+    public function pgdoc_del() {
+        $id = $_GET['id'];
+        $data = array('delstatus' => 0);
+        $this->User_model->del_youngdoc($id, $data);
+
+        redirect('User/view_pgdoctor', 'refresh');
     }
 
 }

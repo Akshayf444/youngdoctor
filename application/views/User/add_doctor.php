@@ -4,7 +4,7 @@ echo form_open('User/addDoctor');
 ?>
 
 
-<div class="col-lg-10 col-sm-10 col-md-10 col-xs-10">
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
     <div class="form-group">
         <input type="text" class="form-control" value="" name="Doctor_Name" placeholder="Doctor Name" />
     </div>
@@ -16,6 +16,21 @@ echo form_open('User/addDoctor');
         <input type="text" class="form-control" value="" name="Mobile_Number" placeholder="Mobile "/> </div>
     <div class="form-group">
         <input type="text" class="form-control" value="" name="email" placeholder="Email"/> </div>
+    <div class="form-group">
+        <input type="text"  class="form-control" name="Degree" placeholder="Degree" >
+                </div>	    
+    <div class="form-group">
+        <input type="text"  class="form-control" name="Passoutcollege " placeholder=" Passout College" >
+           
+        </div>	
+    <div class="form-group">
+        <input type="text"  class="form-control" name="Region" placeholder="Region" >
+           
+        </div>	
+    <div class="form-group">
+        <input type="text"  class="form-control" name="State" placeholder="State" >
+                </div>	
+     
     <div class="form-group">
        <select  class="form-control" name="Years_Practice" >
             <option value="">Select Years Of Practice</option>
@@ -51,8 +66,8 @@ echo form_open('User/addDoctor');
             changeYear: true,
             dateFormat: 'yy-mm-dd'
     });
-            $(function () {
-            $("#date1").datepicker({
+           
+            $("#date").datepicker({
             changeMonth: true,
                     changeYear: true,
                     dateFormat: 'yy-mm-dd'
