@@ -71,18 +71,10 @@
                                 <?php $CI = & get_instance(); ?>
                                 <p style="padding-top: 10px;color: #FFFFFF" ><span class=""><?php echo isset($CI->Full_Name) ? $CI->Full_Name : ''; ?></span>
                                     <a class="text-aqua" href="<?php echo site_url('User/logout'); ?>">
-                                        <span class="fa fa-2x fa-power-off"></span>
+                                        <span class="fa fa-power-off"></span>
                                     </a>
                                 </p>
-                                <ul class="dropdown-menu">
-                                    <?php //echo $CI->user_name; ?>                                   
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-right">
-                                            <a href="" class="btn btn-default btn-flat">Sign out</a>
-                                        </div>
-                                    </li>
-                                </ul>
+
                             </li>
                         </ul>
                     </div>
@@ -99,8 +91,13 @@
                                 <i class="fa fa-dashboard"></i> <span>Young Doctor</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu" style="display: none;">
-                                <li><a href="<?php echo site_url('User/adddoctor');?>"><i class="fa fa-circle-o"></i> Add Doctor</a></li>
-                                <li class=""><a href="<?php echo site_url('User/view_doctor');?>"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
+                                <?php
+                                if ($this->session->userdata('Designation') == 'TM') {
+                                    echo '<li><a href="' . site_url('User/addDoctor') . '"><i class="fa fa-circle-o"></i> Add Doctor</a></li>';
+                                }
+                                ?>
+
+                                <li class=""><a href="<?php echo site_url('User/view_doctor'); ?>"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
                             </ul>
                         </li>
 
@@ -109,8 +106,12 @@
                                 <i class="fa fa-dashboard"></i> <span>PG Doctor</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu" style="display: none;">
-                                <li><a href="<?php echo site_url('User/addpgDoctor');?>"><i class="fa fa-circle-o"></i> Add Doctor</a></li>
-                                <li class=""><a href="<?php echo site_url('User/view_pgdoctor');?>"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
+                                <?php
+                                if ($this->session->userdata('Designation') == 'TM') {
+                                    echo '<li><a href="' . site_url('User/addpgDoctor') . '"><i class="fa fa-circle-o"></i> Add Doctor</a></li>';
+                                }
+                                ?>
+                                <li class=""><a href="<?php echo site_url('User/view_pgdoctor'); ?>"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
                             </ul>
                         </li>
 
