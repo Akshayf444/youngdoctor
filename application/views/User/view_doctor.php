@@ -1,6 +1,22 @@
 <div class="row">
+    <?php if ($this->session->userdata('Designation') == 'BM') { ?>
+        <div class="col-xs-12 panel">
+            <?php
+            $attributes = array('method' => 'GET');
+            echo form_open('User/view_pgdoctor', $attributes);
+            ?>
+
+            <?php echo isset($tmlist) ? $tmlist : ''; ?>
+            <button type="submit" class="btn btn-primary">Fetch</button>
+            </form>
+
+        </div>
+        <?php
+    }
+    ?>
+
     <div class="col-lg-12">
-        <a download="Doctor<?php // echo date('dM g-i-a');          ?>.xls" class="btn btn-success  " href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export to Excel </a>
+        <a download="Doctor<?php // echo date('dM g-i-a');               ?>.xls" class="btn btn-success  " href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export to Excel </a>
     </div>
     <div class="col-lg-12" id="no-more-tables">
         <table class="table table-bordered table-hover panel" id="datatable">
@@ -53,7 +69,7 @@
 
                  <td>  
                             <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/youngdoc_del?id=') . $row->DoctorId; ?>')"></a> 
-                        <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/youngdoc_update?id=') . $row->DoctorId; ?>';"></a>                               
+                        <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/update_doc?id=') . $row->DoctorId; ?>';"></a>                               
 
                         </td>
 

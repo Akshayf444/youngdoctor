@@ -1,6 +1,6 @@
 <?php
 $attribute = array('id' => 'valid');
-echo form_open('User/addpgDoctor');
+echo form_open('User/addpgDoctor',$attribute);
 ?>
 
 
@@ -17,7 +17,7 @@ echo form_open('User/addpgDoctor');
     <div class="form-group">
         <input type="text" class="form-control" value="" name="email" placeholder="Email"/> </div>
     <div class="form-group">
-        <input type="text"  class="form-control" name="Years_Practice" placeholder="No. of years" >
+        <input type="text"  class="form-control" name="Years_Practice" placeholder="No.  Of years" >
            
         </div>
    <div class="form-group">
@@ -67,85 +67,112 @@ echo form_open('User/addpgDoctor');
 <script src="<?php echo asset_url() ?>js/formValidation.min.js" type="text/javascript"></script>
 <script src="<?php echo asset_url() ?>js/bootstrap.min.js" type="text/javascript"></script>
 <script>
-            $('document').ready(function () {
-    $('#valid').formValidation({
-    icon: {
-    },
-            fields: {
-            Doctor_Name: {
-            validators: {
-            notEmpty: {
-            message: 'The VEEVA Employee ID is required'
-            }
-            }
+    $('document').ready(function () {
+        $('#valid').formValidation({
+            icon: {
             },
-                    MSL_Code: {
+            fields: {
+                Doctor_Name: {
                     validators: {
-                    notEmpty: {
-                    message: 'The Local Employee ID is required'
+                        notEmpty: {
+                            message: 'The Doctor_Name  is required'
+                        }
                     }
-                    }
-                    },
-                    address: {
+                },
+                MSL_Code: {
                     validators: {
-                    notEmpty: {
-                    message: 'The  First Name is required'
+                        notEmpty: {
+                            message: 'The MSL_Code is required'
+                        }
                     }
-                    }
-                    },
-                    Moblie_Number: {
+                },
+                address: {
                     validators: {
-                    notEmpty: {
-                    message: 'Please Enter Username'
+                        notEmpty: {
+                            message: 'The  Address is required'
+                        }
                     }
-                    }
-                    },
-                    email: {
+                },
+                Mobile_Number: {
                     validators: {
-                    notEmpty: {
-                    message: 'The Last Name is required'
+                        notEmpty: {
+                            message: 'Moblie_Number is required'
+                        }
                     }
-                    }
-                    },
-                    Years_Practice: {
+                },
+                email: {
                     validators: {
-                    notEmpty: {
-                    message: 'The Full Name is required'
+                        notEmpty: {
+                            message: 'The Email is required '
+                        }
                     }
-                    }
-                    },
-                    DOB: {
+                },
+                Years_Practice: {
                     validators: {
-                    notEmpty: {
-                    message: 'The Territory is required'
+                        notEmpty: {
+                            message: 'The Years_Practice is required'
+                        }
                     }
-                    }
-                    },
-                    ANNIVERSARY: {
+                },
+                DOB: {
                     validators: {
-                    notEmpty: {
-                    message: 'The Email Id is required'
+                        notEmpty: {
+                            message: 'The DOB is required'
+                        }
                     }
-                    }
-                    },
-                    ClipaSerice: {
+                },
+                ANNIVERSARY: {
                     validators: {
-                    notEmpty: {
-                    message: 'Please Select Division'
+                        notEmpty: {
+                            message: 'The ANNIVERSARY is required'
+                        }
                     }
+                },
+                ClipaSerice: {
+                    validators: {
+                        notEmpty: {
+                            message: 'ClipaService is required'
+                        }
                     }
-                    },
+                },
+                Institution: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Institution is required'
+                        }
+                    }
+                },
+                State: {
+                    validators: {
+                        notEmpty: {
+                            message: 'State is required'
+                        }
+                    }
+                },
+                Region: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Region is required'
+                        }
+                    }
+                },
                 
-                    FITB: {
+                Degree: {
                     validators: {
-                    notEmpty: {
-                    message: 'The  Reporting To is required'
+                        notEmpty: {
+                            message: 'Degree is required'
+                        }
                     }
+                },
+                FITB: {
+                    validators: {
+                        notEmpty: {
+                            message: 'FITB is required'
+                        }
                     }
-                    },
+                },
             }
 
-    });
+        });
     });
 </script>
-

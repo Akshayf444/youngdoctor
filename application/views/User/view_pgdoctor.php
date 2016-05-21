@@ -64,7 +64,7 @@
                             <td data-title="Action">  
                                 <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/pgdoc_del?id=') . $row->DoctorId; ?>')"></a> 
 
-                            <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/pgdoc_update?id=') . $row->DoctorId; ?>';"></a>
+                            <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/update_pgdoc?id=') . $row->DoctorId; ?>';"></a>
 
                         </tr>
                         <?php
