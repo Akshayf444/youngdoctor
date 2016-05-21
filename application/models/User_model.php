@@ -63,6 +63,13 @@ class User_model extends CI_Model {
        
         return $query->result();
     }
+      public function find_TM($bm_id) {
+        $sql = "SELECT DoctorId, Institution FROM tbl_employee_master where BM_EmpID='$tm_id' And DrStatus='1' ";
+        $query = $this->db->query($sql);
+       
+        return $query->result();
+    }
+    
   public function namefilter($tm_id,$Institution) {
         $sql = "SELECT dm.*,em.TM_Emp_Id,em.BM_Name,em.SM_Name FROM tbl_doctor dm Inner JOIN  tbl_employee_master  em ON dm.TM_EmpID=em.TM_Emp_Id  where dm.delstatus='1' and dm.DrStatus='2' and dm.TM_EmpID='$tm_id' and dm.Institution='$Institution' "; 
         $query = $this->db->query($sql);

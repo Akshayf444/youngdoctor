@@ -180,9 +180,9 @@ class User extends MY_Controller {
       public function BM_View() {
         $tm_id = $this->TM_Emp_Id;
         $result = $this->User_model->find_Institution($tm_id);
-        $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution');
+        $data['TM'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution');
         if ($this->input->get('id') != '') {
-            $data['Institution'] = $this->Master_Model->generateDropdown($result, 'Institution', 'Institution', $this->input->get('id'));
+            $data['Institution'] = $this->Master_Model->generateDropdown($result, '', 'Institution', $this->input->get('id'));
             $data['show'] = $this->User_model->namefilter($tm_id, $this->input->get('id'));
         }
         $data = array('title' => 'PG Doctor List', 'content' => 'User/bm_view', 'view_data' => $data, 'page_title' => ' Doctor List');
