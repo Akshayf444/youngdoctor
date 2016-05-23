@@ -36,7 +36,7 @@ echo form_open('User/addpgDoctor',$attribute);
     <div class="form-group">
         <input type="text" class="form-control" value="" id="date1" name="ANNIVERSARY" placeholder="Clinic Anniversary"/></div>
     <div class="form-group">
-        <input type="text" class="form-control" value="" name="ClipaSerice" placeholder=" Name Of Clipa Services"/> </div>
+        <input type="text" class="form-control" value="" name="ClipaSerice" placeholder=" Name Of Cipla  Services"/> </div>
      <div class="form-group">
         FITB DONE &nbsp; <input type="radio" name="FITB" value="Yes" />Yes
          <input type="radio" name="FITB" value="No" /> No

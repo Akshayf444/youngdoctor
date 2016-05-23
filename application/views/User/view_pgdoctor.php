@@ -37,7 +37,7 @@
                     <th>Years Of Practice</th> 
                     <th>DOB</th>
                     <th>Clinic Anniversary</th>
-                    <th>Name Of Clipa Services</th>
+                    <th>Name Of Cipla   Services</th>
                     <th>FITB Done</th>
                     <th>BM</th>
                     <th>SM</th>
@@ -63,7 +63,7 @@
                             <td data-title="Years Of Practice"><?php echo $row->Years_Practice; ?></td>
                             <td data-title="DOB"><?php echo $row->DOB; ?></td>   
                             <td data-title="Clinic Anniversary"><?php echo $row->ANNIVERSARY; ?></td>
-                            <td data-title="Name Of Clipa Services"><?php echo $row->CiplaSerice; ?></td>
+                            <td data-title="Name Of Cipla  Services"><?php echo $row->CiplaSerice; ?></td>
                             <td data-title="FITB Done"><?php echo $row->FITB; ?></td>
                             <td data-title="BM"><?php echo $row->BM_Name; ?></td>
                             <td data-title="SM"><?php echo $row->SM_Name; ?></td>
