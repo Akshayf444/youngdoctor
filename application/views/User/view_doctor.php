@@ -3,11 +3,12 @@
         <div class="panel">
             <?php
             $attributes = array('method' => 'GET');
-            echo form_open('User/view_pgdoctor', $attributes);
+            echo form_open('User/view_doctor', $attributes);
             ?>
             <?php if ($this->session->userdata('Designation') == 'BM' || $this->session->userdata('Designation') == 'SM' ) { ?>
+            <?php echo isset($bmlist) ? $bmlist : ''; ?>
                 <?php echo isset($tmlist) ? $tmlist : ''; ?>
-                <?php echo isset($bmlist) ? $bmlist : ''; ?>
+                
                 <button type="submit" class="btn btn-primary">Fetch</button>
                 <?php
             }

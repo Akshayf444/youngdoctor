@@ -5,14 +5,16 @@
             $attributes = array('method' => 'GET');
             echo form_open('User/view_pgdoctor', $attributes);
             ?>
+            <?php echo isset($bmlist) ? $bmlist : ''; ?>
+            <?php echo isset($tmlist) ? $tmlist : ''; ?>
+            
             <select name="id" class="btn btn-default">
                 <option value="">Select Institution </option>
                 <?php echo $Institution; ?>
             </select>
-            <?php echo isset($tmlist) ? $tmlist : ''; ?>
-            <?php echo isset($bmlist) ? $bmlist : ''; ?>
+                        <button type="submit" class="btn btn-primary">Fetch</button>
+
             <a download="Doctor<?php echo date('dM g-i-a'); ?>.xls" class="btn btn-success" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export</a>
-            <button type="submit" class="btn btn-primary">Fetch</button>
             </form>
             
         </div>

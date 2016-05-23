@@ -8,7 +8,7 @@
         <div class="col-lg-6 col-md-6 col-sm-8 col-lg-offset-3 col-md-offset-3 col-sm-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading" style="text-align: center">
-                    <img  src="<?php echo asset_url() ?>images/travels.png" width="45%" >
+                    <img  src="<?php echo asset_url() ?>images/youngdoctor.png" width="45%" >
                 </div>
                 <div class="panel-body">
                     <?php echo form_open('User/index') ?>
@@ -32,30 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div onclick="window.location = '<?php echo site_url('User/forget_pass') ?>';" class="col-lg-3 col-md-3 col-lg-offset-3 col-md-offset-3">
-            <a>Forget Password</a>
-        </div>
-
-        <div class="col-lg-3 col-md-3" id="mini-notification" align="right">
-            Helpline No : <span class="helpline" style = 'color:red;font-weight:bold'>022-65657701</span><br>From 10 am - 6 pm
-            <p>Mail Us: <a href="mailto:bisupport@instacom.in">bisupport@instacom.in</p></a>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(function () {
-
-        function blinker() {
-            $('.helpline').fadeOut(500);
-            $('.helpline').fadeIn(500);
-        }
-
-        setInterval(blinker, 1000);
-    });
-</script>
-
+   
 <script>
 
     $(function () {

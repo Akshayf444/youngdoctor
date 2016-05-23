@@ -55,7 +55,7 @@
 
             <!-- Main Header -->
             <header class="main-header">
-                <a href="<?php echo site_url('User/dashboard'); ?>" class="logo" style="background-color: #fff;"><b><img src="<?php echo asset_url() ?>images/Boehringer.png" ></b></a>
+                <a href="<?php echo site_url('User/dashboard'); ?>" class="logo" style="background-color: #fff;"><b><img src="<?php echo asset_url() ?>images/youngdoctor.png"  style="height: 45%"></b></a>
                 <!-- Header Navbar -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->

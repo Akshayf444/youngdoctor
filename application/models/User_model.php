@@ -68,12 +68,28 @@ class User_model extends CI_Model {
     }
 
     public function getEmployee($conditions = array()) {
-        $sql = "SELECT DISTINCT(TM_Emp_Id) AS TM_Emp_Id , DISTINCT(BM_Emp_Id) AS BM_Emp_Id , DISTINCT(SM_Emp_Id) AS SM_Emp_Id,*  FROM tbl_employee_master ";
+        $sql = " select *  FROM tbl_employee_master ";
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
         $query = $this->db->query($sql);
         return $query->result();
     }
-
+  public function getbm($conditions = array()) {
+        $sql = " SELECT DISTINCT(BM_Emp_Id) AS BM_Emp_Id,`BM_Name` FROM tbl_employee_master ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+     public function view_all($conditions=  array()){
+       $sql = "SELECT dm.*,em.* FROM  tbl_employee_master  em Left JOIN tbl_doctor dm    ON dm.TM_EmpID=em.TM_Emp_Id ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+        $sql.= "  ";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 }
