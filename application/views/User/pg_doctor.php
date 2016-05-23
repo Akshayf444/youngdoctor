@@ -13,7 +13,7 @@ echo form_open('User/addpgDoctor',$attribute);
     <div class="form-group">
         <input type="text" class="form-control" value="" name="address" placeholder="Clinic Address"/> </div>
     <div class="form-group">
-        <input type="text" class="form-control" value="" name="Mobile_Number" placeholder="Mobile "/> </div>
+        <input type="number" class="form-control" value="" name="Mobile_Number" placeholder="Mobile "/> </div>
     <div class="form-group">
         <input type="text" class="form-control" value="" name="email" placeholder="Email"/> </div>
     <div class="form-group">
