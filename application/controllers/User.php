@@ -1,18 +1,22 @@
 <?php
+
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
+
 class User extends MY_Controller {
+
     public $alertLabel = 'Doctor';
     public $doctorIds = array();
+
     public function __construct() {
         parent::__construct();
         $this->load->helper();
         $this->load->model('User_model');
         $this->load->model('Master_Model');
-//        $this->load->model('Doctor_Model');
-//        $this->load->model('Encryption');
+
         $this->load->library('form_validation');
     }
+
     public function index() {
         $data = array();
         $message = '';
@@ -70,11 +74,13 @@ class User extends MY_Controller {
         $data = array('title' => 'Login', 'content' => 'User/login', 'view_data' => $data);
         $this->load->view('template1', $data);
     }
+
     public function dashboard() {
         if ($this->is_logged_in('TM')) {
             
         }
     }
+
     public function addDoctor() {
         if ($this->is_logged_in('TM')) {
             if ($this->input->post()) {
@@ -107,6 +113,7 @@ class User extends MY_Controller {
             $this->logout();
         }
     }
+
     public function addpgDoctor() {
         if ($this->is_logged_in('TM')) {
             if ($this->input->post()) {
@@ -138,8 +145,10 @@ class User extends MY_Controller {
             $this->logout();
         }
     }
+
     public function view_doctor() {
         $conditions = array();
+        $data = array();
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
             $conditions = array(
                 'DrStatus = 1', 'delstatus = 1'
@@ -169,12 +178,14 @@ class User extends MY_Controller {
         $data = array('title' => 'Young Doctor List', 'content' => 'User/view_doctor', 'view_data' => $data, 'page_title' => ' Doctor List');
         $this->load->view('template3', $data);
     }
+
     public function youngdoc_del() {
         $id = $_GET['id'];
         $data = array('delstatus' => 0);
         $this->User_model->del_youngdoc($id, $data);
         redirect('User/view_doctor', 'refresh');
     }
+
     public function view_pgdoctor() {
         $data['Institution'] = null;
         $conditions = array();
@@ -216,10 +227,76 @@ class User extends MY_Controller {
         $data = array('title' => 'PG Doctor List', 'content' => 'User/view_pgdoctor', 'view_data' => $data, 'page_title' => 'PG Doctor List');
         $this->load->view('template3', $data);
     }
+
     public function pgdoc_del() {
         $id = $_GET['id'];
         $data = array('delstatus' => 0);
         $this->User_model->del_youngdoc($id, $data);
         redirect('User/view_pgdoctor', 'refresh');
     }
+
+    public function update_doc() {
+        $id = $_GET['id'];
+        $data['rows'] = $this->User_model->find_by_id($id);
+        if ($this->input->post()) {
+            $data = array(
+                'Doctor_Name' => $this->input->post('Doctor_Name'),
+                'MSL_Code' => $this->input->post('MSL_Code'),
+                'address' => $this->input->post('address'),
+                'Mobile_Number' => $this->input->post('Mobile_Number'),
+                'Years_Practice' => $this->input->post('Years_Practice'),
+                'DOB' => $this->input->post('DOB'),
+                'CiplaSerice' => $this->input->post('ClipaSerice'),
+                'FITB' => $this->input->post('FITB'),
+                'ANNIVERSARY' => $this->input->post('ANNIVERSARY'),
+                'email' => $this->input->post('email'),
+                'Degree' => $this->input->post('Degree'),
+                'Passoutcollege' => $this->input->post('Passoutcollege'),
+                'Region' => $this->input->post('Region'),
+                'State' => $this->input->post('State'),
+                'delstatus' => 1,
+                'DrStatus' => 1,
+                'TM_EmpID' => $this->Emp_Id,
+                'smswayid' => $this->smswayid,
+            );
+            $this->User_model->del_youngdoc($this->input->post('DoctorId'), $data);
+            redirect('User/view_doctor', 'refresh');
+        }
+
+        $data = array('title' => 'Upadte Doctor', 'content' => 'User/edit_doc', 'page_title' => 'Update Doctor', 'view_data' => $data);
+        $this->load->view('template3', $data);
+    }
+
+    public function update_pgdoc() {
+        $id = $_GET['id'];
+        $data['rows'] = $this->User_model->find_by_id($id);
+        if ($this->input->post()) {
+            $data = array(
+                'Doctor_Name' => $this->input->post('Doctor_Name'),
+                'MSL_Code' => $this->input->post('MSL_Code'),
+                'address' => $this->input->post('address'),
+                'Mobile_Number' => $this->input->post('Mobile_Number'),
+                'Years_Practice' => $this->input->post('Years_Practice'),
+                'DOB' => $this->input->post('DOB'),
+                'CiplaSerice' => $this->input->post('ClipaSerice'),
+                'FITB' => $this->input->post('FITB'),
+                'ANNIVERSARY' => $this->input->post('ANNIVERSARY'),
+                'email' => $this->input->post('email'),
+                'Institution' => $this->input->post('Institution'),
+                'Region' => $this->input->post('Region'),
+                'State' => $this->input->post('State'),
+                'delstatus' => 1,
+                'DrStatus' => 2,
+                'TM_EmpID' => $this->Emp_Id,
+                'smswayid' => $this->smswayid,
+            );
+
+            $this->User_model->del_youngdoc($this->input->post('DoctorId'), $data);
+            redirect('User/view_pgdoctor', 'refresh');
+        }
+
+        $data = array('title' => 'Upadte Doctor', 'content' => 'User/edit_pgdoc', 'page_title' => 'Update Doctor', 'view_data' => $data);
+        $this->load->view('template3', $data);
+    }
+
 }

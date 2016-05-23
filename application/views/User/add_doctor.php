@@ -1,9 +1,12 @@
+<style>
+    .content-wrapper{
+        min-height: 775px;
+    }    
+</style>
 <?php
 $attribute = array('id' => 'valid');
 echo form_open('User/addDoctor', $attribute);
 ?>
-
-
 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
     <div class="form-group">
         <input type="text" class="form-control" value="" name="Doctor_Name" placeholder="Doctor Name" />
@@ -21,16 +24,13 @@ echo form_open('User/addDoctor', $attribute);
     </div>	    
     <div class="form-group">
         <input type="text"  class="form-control" name="Passoutcollege" required="" placeholder=" Passout College" >
-
     </div>	
     <div class="form-group">
         <input type="text"  class="form-control" name="Region" placeholder="Region" >
-
     </div>	
     <div class="form-group">
         <input type="text"  class="form-control" name="State" placeholder="State" >
     </div>	
-
     <div class="form-group">
         <select  class="form-control" name="Years_Practice" >
             <option value="">Select Years Of Practice</option>
@@ -51,12 +51,8 @@ echo form_open('User/addDoctor', $attribute);
     <div class="form-group">
         FITB DONE &nbsp; <input type="radio" name="FITB" value="Yes" />Yes
         <input type="radio" name="FITB" value="No" /> No
-
     </div>
-
-
     <button class="btn btn-block btn-success " type="submit">Save</button>
-</div>
 </div>
 </form>
 <script>
@@ -159,7 +155,6 @@ echo form_open('User/addDoctor', $attribute);
                         }
                     }
                 },
-                
                 Degree: {
                     validators: {
                         notEmpty: {

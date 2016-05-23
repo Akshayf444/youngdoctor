@@ -70,9 +70,9 @@
                                 <!-- Menu Toggle Button -->
 
                                 <?php $CI = & get_instance(); ?>
-                                <p style="padding-top: 10px;color: #FFFFFF" ><span class=""><?php echo isset($CI->Full_Name) ? $CI->Full_Name : ''; ?></span>
+                                <p style="padding-top: 10px;color: #FFFFFF" ><span class=""><?php echo isset($CI->Full_Name) ? $CI->Full_Name . "&nbsp" : ''; ?></span>
                                     <a class="text-aqua" href="<?php echo site_url('User/logout'); ?>">
-                                        <span class="fa fa-power-off"></span>
+                                        <span style="font-size: 20px" class="fa fa-power-off">  </span>
                                     </a>
                                 </p>
 
@@ -122,7 +122,7 @@
             </aside>   
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
+            <div class="content-wrapper" >
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
@@ -130,13 +130,9 @@
                         <small></small>
                     </h1>
                 </section>
-                <?php
-//        echo $this->session->userdata('message') ? $this->session->userdata('message') : '';
-//        $this->session->unset_userdata('message');
-                ?>
 
                 <!-- Main content -->
-                <section class="content">
+                <section class="content" style="height: 775px;overflow: scroll">
                     <?php
                     echo $this->session->userdata('message') ? $this->session->userdata('message') : '';
                     $this->session->unset_userdata('message');
@@ -148,17 +144,5 @@
             <script src='<?php echo asset_url() ?>js/jquery.bootstrap-growl.min.js' type='text/javascript'></script>
             <!-- AdminLTE App -->
             <script src="<?php echo asset_url() ?>dashboard/dist/js/app.min.js" type="text/javascript"></script>
-            <script type="text/javascript">
-            var config = {
-                '.chosen-select': {},
-                '.chosen-select-deselect': {allow_single_deselect: true},
-                '.chosen-select-no-single': {disable_search_threshold: 10},
-                '.chosen-select-no-results': {no_results_text: 'Oops, nothing found!'},
-                '.chosen-select-width': {width: "95%"}
-            }
-            for (var selector in config) {
-                $(selector).chosen(config[selector]);
-            }
-            </script>
     </body>
 </html>
