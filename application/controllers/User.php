@@ -9,8 +9,8 @@ class User extends MY_Controller {
         $this->load->helper();
         $this->load->model('User_model');
         $this->load->model('Master_Model');
-        $this->load->model('Doctor_Model');
-        $this->load->model('Encryption');
+//        $this->load->model('Doctor_Model');
+//        $this->load->model('Encryption');
         $this->load->library('form_validation');
     }
     public function index() {
