@@ -38,7 +38,9 @@
                     <th>FITB Done</th>
                     <th>BM</th>
                     <th>SM</th>
-                    <th>Action</th>
+                    <?php if ($this->session->userdata('Designation') == 'TM'  ) { ?>
+                    <th>Action</th> <?php } ?>
+                 
                 </tr>
             </thead>
             <tbody>
@@ -67,9 +69,10 @@
 
 
                  <td>  
+                      <?php if ($this->session->userdata('Designation') == 'TM'  ) { ?>
                             <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/youngdoc_del?id=') . $row->DoctorId; ?>')"></a> 
                         <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/update_doc?id=') . $row->DoctorId; ?>';"></a>                               
-
+<?php }?>
                         </td>
 
                     </tr>

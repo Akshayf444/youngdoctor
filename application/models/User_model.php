@@ -36,7 +36,7 @@ class User_model extends CI_Model {
 
     public function addDoctor($data) {
         $this->db->insert('tbl_doctor', $data);
-        return $this->db->insert_id;
+//        return $this->db->insert_id;
     }
 
     public function del_youngdoc($id, $data) {
