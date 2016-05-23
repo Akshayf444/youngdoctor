@@ -1,9 +1,12 @@
+<style>
+    .content-wrapper{
+        min-height: 775px;
+    }    
+</style>
 <?php
 $attribute = array('id' => 'valid');
 echo form_open('User/addDoctor', $attribute);
 ?>
-
-
 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
     <div class="form-group">
         <input type="text" class="form-control" value="" name="Doctor_Name" placeholder="Doctor Name" />
@@ -20,16 +23,14 @@ echo form_open('User/addDoctor', $attribute);
         <input type="text"  class="form-control" name="Degree" placeholder="Degree" >
     </div>	    
     <div class="form-group">
-        <input type="text"  class="form-control" name="Passoutcollege" required="required" placeholder=" Passout College" >
+        <input type="text"  class="form-control" name="Passoutcollege" required="" placeholder=" Passout College" >
     </div>	
     <div class="form-group">
         <input type="text"  class="form-control" name="Region" placeholder="Region" >
-
     </div>	
     <div class="form-group">
         <input type="text"  class="form-control" name="State" placeholder="State" >
     </div>	
-
     <div class="form-group">
         <select  class="form-control" name="Years_Practice" >
             <option value="">Select Years Of Practice</option>
@@ -50,12 +51,8 @@ echo form_open('User/addDoctor', $attribute);
     <div class="form-group">
         FITB DONE &nbsp; <input type="radio" name="FITB" value="Yes" />Yes
         <input type="radio" name="FITB" value="No" /> No
-
     </div>
-
-
     <button class="btn btn-block btn-success " type="submit">Save</button>
-</div>
 </div>
 </form>
 <script>
@@ -84,38 +81,20 @@ echo form_open('User/addDoctor', $attribute);
                 Doctor_Name: {
                     validators: {
                         notEmpty: {
-<<<<<<< HEAD
-                            message: 'The VEEVA Employee ID is required'
-=======
                             message: 'The Doctor_Name  is required'
->>>>>>> 173f3cb92dc977492ce21b6bd2d6e8735c654103
                         }
                     }
                 },
                 MSL_Code: {
                     validators: {
                         notEmpty: {
-<<<<<<< HEAD
-                            message: 'The Local Employee ID is required'
-=======
                             message: 'The MSL_Code is required'
->>>>>>> 173f3cb92dc977492ce21b6bd2d6e8735c654103
                         }
                     }
                 },
                 address: {
                     validators: {
                         notEmpty: {
-<<<<<<< HEAD
-                            message: 'The  First Name is required'
-                        }
-                    }
-                },
-                Moblie_Number: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please Enter Username'
-=======
                             message: 'The  Address is required'
                         }
                     }
@@ -124,48 +103,19 @@ echo form_open('User/addDoctor', $attribute);
                     validators: {
                         notEmpty: {
                             message: 'Moblie_Number is required'
->>>>>>> 173f3cb92dc977492ce21b6bd2d6e8735c654103
                         }
                     }
                 },
                 email: {
                     validators: {
                         notEmpty: {
-<<<<<<< HEAD
-                            message: 'The Last Name is required'
-=======
                             message: 'The Email is required '
->>>>>>> 173f3cb92dc977492ce21b6bd2d6e8735c654103
                         }
                     }
                 },
                 Years_Practice: {
                     validators: {
                         notEmpty: {
-<<<<<<< HEAD
-                            message: 'The Full Name is required'
-                        }
-                    }
-                },
-                DOB: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The Territory is required'
-                        }
-                    }
-                },
-                ANNIVERSARY: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The Email Id is required'
-                        }
-                    }
-                },
-                ClipaSerice: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please Select Division'
-=======
                             message: 'The Years_Practice is required'
                         }
                     }
@@ -205,7 +155,6 @@ echo form_open('User/addDoctor', $attribute);
                         }
                     }
                 },
-                
                 Degree: {
                     validators: {
                         notEmpty: {
@@ -217,18 +166,13 @@ echo form_open('User/addDoctor', $attribute);
                     validators: {
                         notEmpty: {
                             message: 'Passoutcollege is required'
->>>>>>> 173f3cb92dc977492ce21b6bd2d6e8735c654103
                         }
                     }
                 },
                 FITB: {
                     validators: {
                         notEmpty: {
-<<<<<<< HEAD
-                            message: 'The  Reporting To is required'
-=======
                             message: 'FITB is required'
->>>>>>> 173f3cb92dc977492ce21b6bd2d6e8735c654103
                         }
                     }
                 },
