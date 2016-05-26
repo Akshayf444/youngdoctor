@@ -13,14 +13,14 @@ echo form_open('User/update_doc?id=' . $rows->DoctorId, $attribute);
     <div class="form-group">
         <input type="text" class="form-control" value="<?php echo $rows->address; ?>" name="address" placeholder="Clinic Address"/> </div>
     <div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $rows->Mobile_Number; ?>" name="Mobile_Number" placeholder="Mobile "/> </div>
+        <input type="number" class="form-control" value="<?php echo $rows->Mobile_Number; ?>" name="Mobile_Number" placeholder="Mobile "/> </div>
     <div class="form-group">
         <input type="text" class="form-control" value="<?php echo $rows->email; ?>" name="email" placeholder="Email"/> </div>
     <div class="form-group">
         <input type="text" value="<?php echo $rows->Degree; ?>" class="form-control" name="Degree" placeholder="Degree" >
     </div>	    
     <div class="form-group">
-        <input type="text"  class="form-control" value="<?php echo $rows->Passoutcollege; ?>" name="Passoutcollege " placeholder=" Passout College" >
+        <input type="text"  class="form-control" value="<?php echo $rows->Passoutcollege; ?>" name="Passoutcollege" placeholder=" Passout College" >
 
     </div>	
     <div class="form-group">

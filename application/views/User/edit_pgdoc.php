@@ -14,7 +14,7 @@ echo form_open('User/update_pgdoc?id='. $rows->DoctorId, $attribute);
     <div class="form-group">
         <input type="text" class="form-control" value="<?php echo $rows->address; ?>" name="address" placeholder="Clinic Address"/> </div>
     <div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $rows->Mobile_Number; ?>" name="Mobile_Number" placeholder="Mobile "/> </div>
+        <input type="number" class="form-control" value="<?php echo $rows->Mobile_Number; ?>" name="Mobile_Number" placeholder="Mobile "/> </div>
     <div class="form-group">
         <input type="text" class="form-control" value="<?php echo $rows->email; ?>" name="email" placeholder="Email"/> </div>
      <div class="form-group">
@@ -30,40 +30,10 @@ echo form_open('User/update_pgdoc?id='. $rows->DoctorId, $attribute);
                 </div>	
      
     <div class="form-group">
-       <select  class="form-control" name="Years_Practice" >
-            <option value="">Select Years Of Practice</option>
+        <div class="form-group">
+            <input type="text"  class="form-control" name="Years_Practice" placeholder="No.Of years" value="<?php echo $rows->Years_Practice ?>" >
            
-            <option value="0" <?php
-            if ($rows->Years_Practice == '0') {
-                echo 'selected';
-            }
-            ?>>0</option>
-            <option value="1" <?php
-            if ($rows->Years_Practice == '1') {
-                echo 'selected';
-            }
-            ?>>1</option>
-             <option value="2" <?php
-            if ($rows->Years_Practice == '2') {
-                echo 'selected';
-            }
-            ?>>2</option>
-              <option value="3" <?php
-            if ($rows->Years_Practice == '3') {
-                echo 'selected';
-            }
-            ?>>3</option>
-               <option value="4" <?php
-            if ($rows->Years_Practice == '4') {
-                echo 'selected';
-            }
-            ?>>4</option>
-                <option value="5" <?php
-            if ($rows->Years_Practice == '5') {
-                echo 'selected';
-            }
-            ?>>5</option>
-        </select>
+        </div>
     </div>
                
         

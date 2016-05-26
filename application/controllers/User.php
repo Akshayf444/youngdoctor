@@ -105,7 +105,7 @@ class User extends MY_Controller {
                     'smswayid' => $this->smswayid,
                 );
                 $this->User_model->addDoctor($data);
-                redirect('User/addDoctor', 'refresh');
+                redirect('User/view_doctor', 'refresh');
             }
             $data = array('title' => 'Add Young Doctor', 'content' => 'User/add_doctor', 'view_data' => 'blank', 'page_title' => 'Add Doctor');
             $this->load->view('template3', $data);
@@ -137,7 +137,7 @@ class User extends MY_Controller {
                     'smswayid' => $this->smswayid,
                 );
                 $this->User_model->addDoctor($data);
-                redirect('User/addpgDoctor', 'refresh');
+                redirect('User/view_pgdoctor', 'refresh');
             }
             $data = array('title' => 'Add PG Doctor', 'content' => 'User/pg_doctor', 'view_data' => 'blank', 'page_title' => 'Add PG Doctor');
             $this->load->view('template3', $data);

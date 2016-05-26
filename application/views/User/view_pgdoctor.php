@@ -30,10 +30,10 @@
                     <th>Region</th>
                     <th>Doctor Name</th>
                     <th>MSL Code</th>
-                    <th>address</th>
+                    <th>Address</th>
                     <th>Institution</th>
                     <th>Mobile Number</th>
-                    <th>email</th> 
+                    <th>Email</th> 
                     <th>Years Of Practice</th> 
                     <th>DOB</th>
                     <th>Clinic Anniversary</th>
