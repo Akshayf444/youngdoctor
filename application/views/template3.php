@@ -115,6 +115,18 @@
                                 <li class=""><a href="<?php echo site_url('User/view_pgdoctor'); ?>"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
                             </ul>
                         </li>
+                        <?php if ($this->session->userdata('Designation') == 'TM') { ?>
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-dashboard"></i> <span>Institute</span> <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu" style="display: none;">
+                                    <li><a href="<?php echo site_url('User/addinstitute'); ?>"><i class="fa fa-circle-o"></i> Add Institute</a></li>
+                                    <li class=""><a href="<?php echo site_url('User/viewinstitute'); ?>"><i class="fa fa-circle-o"></i>  View Institute</a></li>
+                                </ul>
+                            </li>
+                        <?php }
+                        ?>
 
                     </ul>
                 </section>
@@ -132,7 +144,7 @@
                 </section>
 
                 <!-- Main content -->
-                <section class="content" style="height: 775px;overflow: scroll">
+                <section class="content">
                     <?php
                     echo $this->session->userdata('message') ? $this->session->userdata('message') : '';
                     $this->session->unset_userdata('message');

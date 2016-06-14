@@ -1,110 +1,105 @@
 <?php
 $attribute = array('id' => 'valid');
-echo form_open('User/update_pgdoc?id='. $rows->DoctorId, $attribute);
+echo form_open('User/update_pgdoc?id=' . $rows->DoctorId, $attribute);
 ?>
-
-
-<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-      <input type="hidden" class="form-control" value="<?php echo $rows->DoctorId?>" name="DoctorId"  />
-    <div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $rows->Doctor_Name?>" name="Doctor_Name" placeholder="Doctor Name" />
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $rows->MSL_Code; ?>" name="MSL_Code" placeholder="MSL Code" /> </div>
-    <div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $rows->address; ?>" name="address" placeholder="Clinic Address"/> </div>
-    <div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $rows->Mobile_Number; ?>" name="Mobile_Number" placeholder="Mobile "/> </div>
-    <div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $rows->email; ?>" name="email" placeholder="Email"/> </div>
-     <div class="form-group">
-         <input type="text"  class="form-control" value="<?php echo $rows->Institution;?>" name="Institution" placeholder="Institution" >
-           
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <input type="hidden" class="form-control" value="<?php echo $rows->DoctorId ?>" name="DoctorId"  />
+        <div class="form-group">
+            <input type="text" class="form-control" value="<?php echo $rows->Doctor_Name ?>" name="Doctor_Name" placeholder="Doctor Name" />
         </div>
-    <div class="form-group">
-        <input type="text"  value="<?php echo $rows->Region; ?>" class="form-control" name="Region" placeholder="Region" >
-           
+        <div class="form-group">
+            <input type="text" class="form-control" value="<?php echo $rows->MSL_Code; ?>" name="MSL_Code" placeholder="MSL Code" /> </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="<?php echo $rows->address; ?>" name="address" placeholder="Clinic Address"/> </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="<?php echo $rows->Mobile_Number; ?>" name="Mobile_Number" placeholder="Mobile "/> </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="<?php echo $rows->email; ?>" name="email" placeholder="Email"/> </div>
+        <div class="form-group">
+            <select  class="form-control" name="Institution" ><option value="">Select Institution</option><?php echo $institute ?></select>
         </div>	
-    <div class="form-group">
-        <input type="text" value="<?php echo $rows->State; ?>" class="form-control" name="State" placeholder="State" >
-                </div>	
-     
-    <div class="form-group">
-       <select  class="form-control" name="Years_Practice" >
-            <option value="">Select Years Of Practice</option>
-           
-            <option value="0" <?php
-            if ($rows->Years_Practice == '0') {
-                echo 'selected';
-            }
-            ?>>0</option>
-            <option value="1" <?php
-            if ($rows->Years_Practice == '1') {
-                echo 'selected';
-            }
-            ?>>1</option>
-             <option value="2" <?php
-            if ($rows->Years_Practice == '2') {
-                echo 'selected';
-            }
-            ?>>2</option>
-              <option value="3" <?php
-            if ($rows->Years_Practice == '3') {
-                echo 'selected';
-            }
-            ?>>3</option>
-               <option value="4" <?php
-            if ($rows->Years_Practice == '4') {
-                echo 'selected';
-            }
-            ?>>4</option>
+
+        <div class="form-group">
+            <select  class="form-control" name="Years_Practice" >
+                <option value="">Select Years Of Practice</option>
+
+                <option value="0" <?php
+                if ($rows->Years_Practice == '0') {
+                    echo 'selected';
+                }
+                ?>>0</option>
+                <option value="1" <?php
+                if ($rows->Years_Practice == '1') {
+                    echo 'selected';
+                }
+                ?>>1</option>
+                <option value="2" <?php
+                if ($rows->Years_Practice == '2') {
+                    echo 'selected';
+                }
+                ?>>2</option>
+                <option value="3" <?php
+                if ($rows->Years_Practice == '3') {
+                    echo 'selected';
+                }
+                ?>>3</option>
+                <option value="4" <?php
+                if ($rows->Years_Practice == '4') {
+                    echo 'selected';
+                }
+                ?>>4</option>
                 <option value="5" <?php
-            if ($rows->Years_Practice == '5') {
-                echo 'selected';
+                if ($rows->Years_Practice == '5') {
+                    echo 'selected';
+                }
+                ?>>5</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <input type="text" class="form-control" value="<?php echo $rows->DOB; ?>" id="date" name="DOB" placeholder="Date Of Birth"/></div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="<?php echo $rows->ANNIVERSARY; ?>" id="date1" name="ANNIVERSARY" placeholder="Clinic Anniversary"/></div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="<?php echo $rows->CiplaSerice; ?>" name="ClipaSerice" placeholder=" Name Of Clipa Services"/> </div>
+        <div class="form-group">
+
+            FITB DONE &nbsp; 
+
+            <input name="FITB" type="radio" value="Yes" <?php
+            if ($rows->FITB == 'Yes') {
+                echo "checked";
             }
-            ?>>5</option>
-        </select>
+            ?> > YES
+            <input name="FITB" type="radio"  value="No" <?php
+            if ($rows->FITB == 'No') {
+                echo "checked";
+            }
+            ?> > No
+
+        </div>
+
+
+        <button class="btn btn-block btn-success " type="submit">Update</button>
     </div>
-               
-        
-    <div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $rows->DOB; ?>" id="date" name="DOB" placeholder="Date Of Birth"/></div>
-    <div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $rows->ANNIVERSARY; ?>" id="date1" name="ANNIVERSARY" placeholder="Clinic Anniversary"/></div>
-    <div class="form-group">
-        <input type="text" class="form-control" value="<?php echo $rows->CiplaSerice; ?>" name="ClipaSerice" placeholder=" Name Of Clipa Services"/> </div>
-    <div class="form-group">
-
-     FITB DONE &nbsp; 
-
-        <input name="FITB" type="radio" value="Yes" <?php if ($rows->FITB == 'Yes') {
-            echo "checked";
-        } ?> > YES
-        <input name="FITB" type="radio"  value="No" <?php if ($rows->FITB == 'No') {
-            echo "checked";
-        } ?> > No
-
-    </div>
-
-
-    <button class="btn btn-block btn-success " type="submit">Update</button>
-</div>
 </div>
 </form>
 <script>
     $(function () {
-    $("#date1").datepicker({
-    changeMonth: true,
+        $("#date1").datepicker({
+            changeMonth: true,
             changeYear: true,
             dateFormat: 'yy-mm-dd'
-    });
-           
-            $("#date").datepicker({
+        });
+
+        $("#date").datepicker({
             changeMonth: true,
-                    changeYear: true,
-                    dateFormat: 'yy-mm-dd'
-            });
-            });</script>
+            changeYear: true,
+            dateFormat: 'yy-mm-dd'
+        });
+    });</script>
 
 <script src="<?php echo asset_url() ?>js/formValidation.min.js" type="text/javascript"></script>
 <script src="<?php echo asset_url() ?>js/bootstrap.min.js" type="text/javascript"></script>
@@ -198,7 +193,6 @@ echo form_open('User/update_pgdoc?id='. $rows->DoctorId, $attribute);
                         }
                     }
                 },
-                
                 Degree: {
                     validators: {
                         notEmpty: {
