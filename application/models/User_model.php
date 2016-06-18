@@ -33,7 +33,14 @@ class User_model extends CI_Model {
         // echo $this->db->last_query();
         return $query->row_array();
     }
-
+ public function adminauthentication($username,$password){
+     $this->db->select('*');
+     $this->db->from('admin');
+     $this->db->where(array('admin_id'=>$username,'admin_id'=>$username));
+     $query=$this->db->get();
+     //echo $this->db->last_query();
+      return $query->row_array();
+ }
     public function addDoctor($data) {
         $this->db->insert('tbl_doctor', $data);
 //        return $this->db->insert_id;
@@ -85,7 +92,8 @@ class User_model extends CI_Model {
     }
 
     public function view_all($conditions = array()) {
-        $sql = "SELECT dm.*,inst.name as Institution, em.* FROM  tbl_employee_master  em INNER JOIN tbl_doctor dm  ON dm.TM_EmpID = em.TM_Emp_Id LEFT JOIN tbl_institute inst ON inst.TM_EmpID = em.TM_Emp_Id ";
+        $sql = "SELECT dm.*,inst.name as Institution, em.* FROM  tbl_employee_master  em INNER JOIN tbl_doctor dm  ON dm.TM_EmpID = em.TM_Emp_Id LEFT JOIN tbl_institute inst ON inst.inst_id = dm.Institution ";
+
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
@@ -121,7 +129,7 @@ class User_model extends CI_Model {
             $sql.=" WHERE " . join(" AND ", $condition);
         }
         $sql.= " ";
-
+ echo $sql;
         $query = $this->db->query($sql);
         return $query->row();
     }
@@ -172,6 +180,11 @@ class User_model extends CI_Model {
             array_push($allStates, $states);
         }
         return $allStates;
+    }
+
+    public function deleteinstitute($id) {
+        $this->db->where(array('inst_id' => (int)$id));
+        $this->db->update('tbl_institute', array('del_status' => 1));
     }
 
 }

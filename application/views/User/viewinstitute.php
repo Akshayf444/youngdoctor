@@ -28,7 +28,11 @@
 
                             <td>  
                                 <?php if ($this->session->userdata('Designation') == 'TM') { ?>
+<<<<<<< HEAD
                                     <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php //echo site_url('User/youngdoc_del?id=') . $row->DoctorId;  ?>')"></a> 
+=======
+                                    <a class="fa fa-trash-o btn-danger btn-xs" class=""  onclick="deletedoc('<?php echo site_url('User/deleteinstitute/' . $row->inst_id); ?>')"></a> 
+>>>>>>> 222de80eb3e312f76db8cd720466b67b52acb116
                                     <a class="fa fa-pencil btn-success btn-xs" onclick="window.location = '<?php echo site_url('User/editinstitute/' . $row->inst_id); ?>';"></a>                               
                                 <?php } ?>
                             </td>
