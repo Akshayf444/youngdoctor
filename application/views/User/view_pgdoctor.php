@@ -26,18 +26,17 @@
             <thead>
                 <tr>
                     <th>Sr.</th>
-                    <th>State</th>
                     <th>Region</th>
                     <th>Doctor Name</th>
                     <th>MSL Code</th>
-                    <th>Address</th>
+                    <th>address</th>
                     <th>Institution</th>
                     <th>Mobile Number</th>
-                    <th>Email</th> 
+                    <th>email</th> 
                     <th>Years Of Practice</th> 
                     <th>DOB</th>
                     <th>Clinic Anniversary</th>
-                    <th>Name Of Cipla   Services</th>
+                    <th>Name Of Clipa Services</th>
                     <th>FITB Done</th>
                     <th>BM</th>
                     <th>SM</th>
@@ -52,7 +51,6 @@
                     foreach ($show as $row) :
                         ?><tr>  
                             <td data-title="Sr"><?php echo $count++; ?></td>
-                            <td data-title="State"><?php echo $row->State; ?></td>
                             <td data-title="Region"><?php echo $row->Region; ?></td>
                             <td data-title="Doctor Name"><?php echo $row->Doctor_Name; ?></td>  
                             <td data-title="MSL Code"><?php echo $row->MSL_Code; ?> </td> 
@@ -63,7 +61,7 @@
                             <td data-title="Years Of Practice"><?php echo $row->Years_Practice; ?></td>
                             <td data-title="DOB"><?php echo $row->DOB; ?></td>   
                             <td data-title="Clinic Anniversary"><?php echo $row->ANNIVERSARY; ?></td>
-                            <td data-title="Name Of Cipla  Services"><?php echo $row->CiplaSerice; ?></td>
+                            <td data-title="Name Of Clipa Services"><?php echo $row->CiplaSerice; ?></td>
                             <td data-title="FITB Done"><?php echo $row->FITB; ?></td>
                             <td data-title="BM"><?php echo $row->BM_Name; ?></td>
                             <td data-title="SM"><?php echo $row->SM_Name; ?></td>

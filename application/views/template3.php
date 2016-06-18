@@ -55,7 +55,7 @@
 
             <!-- Main Header -->
             <header class="main-header">
-                <a href="<?php echo site_url('User/adddoctor'); ?>" class="logo" style="background-color: #fff;"><b><img src="<?php echo asset_url() ?>images/youngdoctor.png"  style="height: 45%"></b></a>
+                <a href="<?php echo site_url('User/dashboard'); ?>" class="logo" style="background-color: #fff;"><b><img src="<?php echo asset_url() ?>images/youngdoctor.png"  style="height: 45%"></b></a>
                 <!-- Header Navbar -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
@@ -86,10 +86,12 @@
                 <section class="sidebar">
                     <!-- Sidebar user panel -->
                     <ul class="sidebar-menu">
-
+                        <li>
+                            <a href="<?php echo site_url('User/dashboard'); ?>"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>Young Doctor</span> <i class="fa fa-angle-left pull-right"></i>
+                                <i class="fa fa-user-md"></i> <span>Young Doctor</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu" style="display: none;">
                                 <?php
@@ -104,7 +106,7 @@
 
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>PG Doctor</span> <i class="fa fa-angle-left pull-right"></i>
+                                <i class="fa fa-user-md"></i> <span>PG Doctor</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu" style="display: none;">
                                 <?php
@@ -115,6 +117,18 @@
                                 <li class=""><a href="<?php echo site_url('User/view_pgdoctor'); ?>"><i class="fa fa-circle-o"></i>  View Doctor</a></li>
                             </ul>
                         </li>
+                        <?php if ($this->session->userdata('Designation') == 'TM') { ?>
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-institution"></i> <span>Institute</span> <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu" style="display: none;">
+                                    <li><a href="<?php echo site_url('User/addinstitute'); ?>"><i class="fa fa-circle-o"></i> Add Institute</a></li>
+                                    <li class=""><a href="<?php echo site_url('User/viewinstitute'); ?>"><i class="fa fa-circle-o"></i>  View Institute</a></li>
+                                </ul>
+                            </li>
+                        <?php }
+                        ?>
 
                     </ul>
                 </section>
@@ -132,7 +146,7 @@
                 </section>
 
                 <!-- Main content -->
-                <section class="content" style="height: 775px;overflow: scroll">
+                <section class="content">
                     <?php
                     echo $this->session->userdata('message') ? $this->session->userdata('message') : '';
                     $this->session->unset_userdata('message');
