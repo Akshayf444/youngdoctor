@@ -10,21 +10,25 @@ echo form_open('User/addinstitute', $attribute);
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
         <div class="form-group">
+            Institute Name
             <input type="text" class="form-control" value="" name="name" placeholder="Institute Name" />
         </div>
         <div class="form-group">
+            City
             <input type="text" class="form-control" value="" name="city" placeholder="City" /> </div>
 
         <div class="form-group">
+            State
             <select  class="form-control" name="state" >
                 <option value="">Select State</option>
                 <?php echo $states; ?>
             </select> 
         </div>
         <div class="form-group">
+            Address
             <textarea class="form-control" name="address" placeholder="Address"></textarea></div>
 
-        <button class="btn btn-block btn-success " type="submit">Save</button>
+        <button class="btn btn-block btn-success " type="submit">SAVE</button>
     </div>
 </div>
 </form>

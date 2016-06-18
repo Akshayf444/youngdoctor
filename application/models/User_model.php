@@ -89,7 +89,7 @@ class User_model extends CI_Model {
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }
-        $sql.= "  ";
+        $sql.= " GROUP BY dm.DoctorId ";
         $query = $this->db->query($sql);
         return $query->result();
     }
@@ -172,6 +172,11 @@ class User_model extends CI_Model {
             array_push($allStates, $states);
         }
         return $allStates;
+    }
+
+    public function deleteinstitute($id) {
+        $this->db->where(array('inst_id' => (int)$id));
+        $this->db->update('tbl_institute', array('del_status' => 1));
     }
 
 }

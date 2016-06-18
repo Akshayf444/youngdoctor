@@ -35,7 +35,7 @@ class User extends MY_Controller {
                     $this->session->set_userdata('SSM_Emp_Id', $tmexist['SSM_Emp_Id']);
                     $this->session->set_userdata('Reporting_Id', $tmexist['BM_Emp_Id']);
                     $this->session->set_userdata('Designation', 'TM');
-                    redirect('User/addDoctor', 'refresh');
+                    redirect('User/dashboard', 'refresh');
                 } else {
                     $bmexist = $this->User_model->bmauthentication($username, $password);
                     if (!empty($bmexist)) {
@@ -48,7 +48,7 @@ class User extends MY_Controller {
                         $this->session->set_userdata('Full_Name', $bmexist['BM_Name']);
                         $this->session->set_userdata('smswayid', $bmexist['smsWayID']);
                         $this->session->set_userdata('Designation', 'BM');
-                        redirect('User/view_doctor', 'refresh');
+                        redirect('User/dashboard', 'refresh');
                     } else {
                         $smexist = $this->User_model->smauthentication($username, $password);
                         if (!empty($smexist)) {
@@ -61,7 +61,7 @@ class User extends MY_Controller {
                             $this->session->set_userdata('Full_Name', $smexist['SM_Name']);
                             $this->session->set_userdata('smswayid', $smexist['smsWayID']);
                             $this->session->set_userdata('Designation', 'SM');
-                            redirect('User/view_doctor', 'refresh');
+                            redirect('User/dashboard', 'refresh');
                         } else {
                             $this->session->set_userdata('message', $this->Master_Model->DisplayAlert('Incorrect Username/Password', 'danger'));
                         }
@@ -129,7 +129,7 @@ class User extends MY_Controller {
 
     public function addpgDoctor() {
         if ($this->is_logged_in('TM')) {
-            $result = $this->User_model->getInstitute(array('TM_EmpID' => $this->Emp_Id));
+            $result = $this->User_model->getInstitute(array("TM_EmpID =" . $this->Emp_Id));
             $data['institute'] = $this->Master_Model->generateDropdown($result, 'inst_id', 'name');
             if ($this->input->post()) {
                 $data = array(
@@ -187,7 +187,7 @@ class User extends MY_Controller {
 
     public function editinstitute($id) {
         if ($this->is_logged_in('TM')) {
-            $result = $this->User_model->getInstitute(array('inst_id' => $id));
+            $result = $this->User_model->getInstitute(array("inst_id =" . $id));
             $data['institute'] = array_shift($result);
             $data['state'] = $this->Master_Model->generateDropdown($this->User_model->getState(), 'state', 'state', $data['institute']->state);
             if ($this->input->post()) {
@@ -217,15 +217,15 @@ class User extends MY_Controller {
     }
 
     public function view_doctor() {
-        $conditions = array();
+        $conditions = array(
+            'DrStatus = 1', 'delstatus = 1'
+        );
         $data = array();
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id')) {
-            $conditions = array(
-                'DrStatus = 1', 'delstatus = 1'
-            );
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
-            array_push($conditions, 'TM_EmpID = ' . $tm_id);
+            $conditions[] = "dm.TM_EmpID = " . $tm_id;
         }
+
         if ($this->is_logged_in('SM')) {
             $SM_Emp_Id = $this->Emp_Id;
             $bmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
@@ -233,10 +233,9 @@ class User extends MY_Controller {
             if ($this->input->get('Bm_Emp_Id') > 0) {
                 $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
             }
-            $data['show'] = $this->User_model->view_all(array(
-                'DrStatus = 1', 'delstatus = 1', 'SM_Emp_Id = ' . $SM_Emp_Id
-            ));
+            $conditions[] = "SM_Emp_Id = " . $SM_Emp_Id;
         }
+
         if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
             $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
@@ -244,9 +243,12 @@ class User extends MY_Controller {
             if ($this->input->get('TM_Emp_Id') > 0) {
                 $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
             }
+
+            $conditions[] = "BM_Emp_Id = " . $BM_Emp_Id;
         }
+
         if (!empty($conditions)) {
-            $data['show'] = $this->User_model->getDoctor($conditions);
+            $data['show'] = $this->User_model->view_all($conditions);
         }
 
         $data = array('title' => 'Young Doctor List', 'content' => 'User/view_doctor', 'view_data' => $data, 'page_title' => ' Doctor List');
@@ -274,6 +276,7 @@ class User extends MY_Controller {
             }
             $conditions[] = 'SM_Emp_Id = ' . $SM_Emp_Id;
         }
+        
         if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
             $BM_Emp_Id = $this->is_logged_in('BM') ? $this->Emp_Id : $this->input->get('BM_Emp_Id');
             $tmlist = $this->User_model->getEmployee(array('BM_Emp_Id = ' . $BM_Emp_Id));
@@ -281,17 +284,20 @@ class User extends MY_Controller {
             if ($this->input->get('TM_Emp_Id') > 0) {
                 $data['tmlist'] = '<select class="btn btn-default" name="TM_Emp_Id"><option value="0"  >Select TM</option>' . $this->Master_Model->generateDropdown($tmlist, 'TM_Emp_Id', 'TM_Name', $this->input->get('TM_Emp_Id')) . '</select>';
             }
+            $conditions[] = "BM_Emp_Id = " . $BM_Emp_Id;
         }
+        
         if ($this->is_logged_in('TM') || $this->input->get('TM_Emp_Id') != '') {
 
             $tm_id = $this->is_logged_in('TM') ? $this->TM_Emp_Id : $this->input->get('TM_Emp_Id');
-            $result = $this->User_model->getInstitute(array('TM_EmpID = '.$tm_id));
+            $result = $this->User_model->getInstitute(array("TM_EmpID = " . $tm_id));
             $data['Institution'] = $this->Master_Model->generateDropdown($result, 'inst_id', 'name');
             if ($this->input->get('id') != '') {
                 $data['Institution'] = $this->Master_Model->generateDropdown($result, 'inst_id', 'name', $this->input->get('id'));
             }
             array_push($conditions, 'dm.TM_EmpID = ' . $tm_id);
         }
+        
         if ($this->input->get('id') != '') {
             $institute = $this->input->get('id');
             array_push($conditions, "Institution = '$institute' ");
@@ -347,7 +353,7 @@ class User extends MY_Controller {
     public function update_pgdoc() {
         $id = $_GET['id'];
         $data['rows'] = $this->User_model->find_by_id($id);
-        $result = $this->User_model->getInstitute(array('TM_EmpID' => $this->Emp_Id));
+        $result = $this->User_model->getInstitute(array("TM_EmpID = " . $this->Emp_Id));
         $data['institute'] = $this->Master_Model->generateDropdown($result, 'inst_id', 'name', $data['rows']->Institution);
 
         if ($this->input->post()) {
@@ -377,6 +383,11 @@ class User extends MY_Controller {
 
         $data = array('title' => 'Upadte Doctor', 'content' => 'User/edit_pgdoc', 'page_title' => 'Update Doctor', 'view_data' => $data);
         $this->load->view('template3', $data);
+    }
+
+    public function deleteinstitute($id) {
+        $this->User_model->deleteinstitute($id);
+        redirect('User/viewinstitute', 'refresh');
     }
 
 }

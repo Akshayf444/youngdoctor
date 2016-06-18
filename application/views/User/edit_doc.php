@@ -5,33 +5,43 @@ echo form_open('User/update_doc?id=' . $rows->DoctorId, $attribute);
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
         <div class="form-group">
+            Doctor Name
             <input type="hidden" class="form-control" value="<?php echo $rows->DoctorId ?>" name="DoctorId"  />
             <input type="text" class="form-control" value="<?php echo $rows->Doctor_Name ?>" name="Doctor_Name" placeholder="Doctor Name" />
         </div>
         <div class="form-group">
+            MSL Code
             <input type="text" class="form-control" value="<?php echo $rows->MSL_Code; ?>" name="MSL_Code" placeholder="MSL Code" /> </div>
         <div class="form-group">
+            Clinic Address
             <input type="text" class="form-control" value="<?php echo $rows->address; ?>" name="address" placeholder="Clinic Address"/> </div>
         <div class="form-group">
+            Mobile Number
             <input type="text" class="form-control" value="<?php echo $rows->Mobile_Number; ?>" name="Mobile_Number" placeholder="Mobile "/> </div>
         <div class="form-group">
+            Email
             <input type="text" class="form-control" value="<?php echo $rows->email; ?>" name="email" placeholder="Email"/> </div>
         <div class="form-group">
+            Degree
             <input type="text" value="<?php echo $rows->Degree; ?>" class="form-control" name="Degree" placeholder="Degree" >
         </div>	    
         <div class="form-group">
+            Passout College
             <input type="text"  class="form-control" value="<?php echo $rows->Passoutcollege; ?>" name="Passoutcollege " placeholder=" Passout College" >
 
         </div>	
         <div class="form-group">
+            Region
             <input type="text"  value="<?php echo $rows->Region; ?>" class="form-control" name="Region" placeholder="Region" >
 
         </div>	
         <div class="form-group">
+            State
             <input type="text" value="<?php echo $rows->State; ?>" class="form-control" name="State" placeholder="State" >
         </div>	
 
         <div class="form-group">
+            Years Of Practice
             <select  class="form-control" name="Years_Practice" >
                 <option value="">Select Years Of Practice</option>
 
@@ -70,10 +80,13 @@ echo form_open('User/update_doc?id=' . $rows->DoctorId, $attribute);
 
 
         <div class="form-group">
+            Date Of Birth
             <input type="text" class="form-control" value="<?php echo $rows->DOB; ?>" id="date" name="DOB" placeholder="Date Of Birth"/></div>
         <div class="form-group">
+            Clinic Anniversary
             <input type="text" class="form-control" value="<?php echo $rows->ANNIVERSARY; ?>" id="date1" name="ANNIVERSARY" placeholder="Clinic Anniversary"/></div>
         <div class="form-group">
+            Name Of Clipa Services
             <input type="text" class="form-control" value="<?php echo $rows->CiplaSerice; ?>" name="ClipaSerice" placeholder=" Name Of Clipa Services"/> </div>
         <div class="form-group">
 
@@ -93,7 +106,7 @@ echo form_open('User/update_doc?id=' . $rows->DoctorId, $attribute);
         </div>
 
 
-        <button class="btn btn-block btn-success " type="submit">Update</button>
+        <button class="btn btn-block btn-success " type="submit">UPDATE</button>
     </div>
 </div>
 </form>
@@ -145,6 +158,9 @@ echo form_open('User/update_doc?id=' . $rows->DoctorId, $attribute);
                     validators: {
                         notEmpty: {
                             message: 'Moblie_Number is required'
+                        },
+                        integer: {
+                            message: 'Please Enter Digits'
                         }
                     }
                 },

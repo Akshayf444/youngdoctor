@@ -86,10 +86,12 @@
                 <section class="sidebar">
                     <!-- Sidebar user panel -->
                     <ul class="sidebar-menu">
-
+                        <li>
+                            <a href="<?php echo site_url('User/dashboard'); ?>"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>Young Doctor</span> <i class="fa fa-angle-left pull-right"></i>
+                                <i class="fa fa-user-md"></i> <span>Young Doctor</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu" style="display: none;">
                                 <?php
@@ -104,7 +106,7 @@
 
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>PG Doctor</span> <i class="fa fa-angle-left pull-right"></i>
+                                <i class="fa fa-user-md"></i> <span>PG Doctor</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu" style="display: none;">
                                 <?php
@@ -118,7 +120,7 @@
                         <?php if ($this->session->userdata('Designation') == 'TM') { ?>
                             <li class="treeview">
                                 <a href="#">
-                                    <i class="fa fa-dashboard"></i> <span>Institute</span> <i class="fa fa-angle-left pull-right"></i>
+                                    <i class="fa fa-institution"></i> <span>Institute</span> <i class="fa fa-angle-left pull-right"></i>
                                 </a>
                                 <ul class="treeview-menu" style="display: none;">
                                     <li><a href="<?php echo site_url('User/addinstitute'); ?>"><i class="fa fa-circle-o"></i> Add Institute</a></li>

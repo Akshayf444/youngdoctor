@@ -26,7 +26,6 @@
             <thead>
                 <tr>
                     <th>Sr.</th>
-                    <th>State</th>
                     <th>Region</th>
                     <th>Doctor Name</th>
                     <th>MSL Code</th>
@@ -52,7 +51,6 @@
                     foreach ($show as $row) :
                         ?><tr>  
                             <td data-title="Sr"><?php echo $count++; ?></td>
-                            <td data-title="State"><?php echo $row->State; ?></td>
                             <td data-title="Region"><?php echo $row->Region; ?></td>
                             <td data-title="Doctor Name"><?php echo $row->Doctor_Name; ?></td>  
                             <td data-title="MSL Code"><?php echo $row->MSL_Code; ?> </td> 
