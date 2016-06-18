@@ -30,7 +30,6 @@ echo form_open('User/update_pgdoc?id=' . $rows->DoctorId, $attribute);
             Years Of Practice
             <select  class="form-control" name="Years_Practice" >
                 <option value="">Select Years Of Practice</option>
-
                 <option value="0" <?php
                 if ($rows->Years_Practice == '0') {
                     echo 'selected';
@@ -88,7 +87,6 @@ echo form_open('User/update_pgdoc?id=' . $rows->DoctorId, $attribute);
                 echo "checked";
             }
             ?> > No
-
         </div>
 
 

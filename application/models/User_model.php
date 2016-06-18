@@ -85,7 +85,8 @@ class User_model extends CI_Model {
     }
 
     public function view_all($conditions = array()) {
-        $sql = "SELECT dm.*,inst.name as Institution, em.* FROM  tbl_employee_master  em INNER JOIN tbl_doctor dm  ON dm.TM_EmpID = em.TM_Emp_Id LEFT JOIN tbl_institute inst ON inst.TM_EmpID = em.TM_Emp_Id ";
+        $sql = "SELECT dm.*,inst.name as Institution, em.* FROM  tbl_employee_master  em INNER JOIN tbl_doctor dm  ON dm.TM_EmpID = em.TM_Emp_Id LEFT JOIN tbl_institute inst ON inst.inst_id = dm.Institution ";
+
         if (!empty($conditions)) {
             $sql.=" WHERE " . join(" AND ", $conditions);
         }

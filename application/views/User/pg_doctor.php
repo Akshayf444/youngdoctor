@@ -39,7 +39,6 @@ echo form_open('User/addpgDoctor', $attribute);
         <div class="form-group">
             FITB DONE &nbsp; <input type="radio" name="FITB" value="Yes" />Yes
             <input type="radio" name="FITB" value="No" /> No
-
         </div>
 
         <button class="btn btn-block btn-success " type="submit">SAVE</button>
