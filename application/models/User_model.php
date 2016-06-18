@@ -129,7 +129,7 @@ class User_model extends CI_Model {
             $sql.=" WHERE " . join(" AND ", $condition);
         }
         $sql.= " ";
- echo $sql;
+ 
         $query = $this->db->query($sql);
         return $query->row();
     }
@@ -185,6 +185,34 @@ class User_model extends CI_Model {
     public function deleteinstitute($id) {
         $this->db->where(array('inst_id' => (int)$id));
         $this->db->update('tbl_institute', array('del_status' => 1));
+    }
+public function getRegion($conditions = array()) {
+        $sql = "SELECT DISTINCT(Region) as region FROM tbl_employee_master ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function getZone($conditions = array()) {
+        $sql = "SELECT DISTINCT(Zone) as zone FROM tbl_employee_master ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+      public function getSM($conditions = array()) {
+        $sql = "SELECT DISTINCT(SM_Emp_Id) as SM_Emp_Id,SM_Name FROM tbl_employee_master ";
+        if (!empty($conditions)) {
+            $sql.=" WHERE " . join(" AND ", $conditions);
+        }
+
+        $query = $this->db->query($sql);
+        return $query->result();
     }
 
 }

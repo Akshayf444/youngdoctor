@@ -5,9 +5,19 @@
             $attributes = array('method' => 'GET');
             echo form_open('User/view_pgdoctor', $attributes);
             ?>
-            <?php echo isset($bmlist) ? $bmlist : ''; ?>
-            <?php echo isset($tmlist) ? $tmlist : ''; ?>
-            
+             <?php if ($this->session->userdata('Designation') == 'BM' 
+                    || $this->session->userdata('Designation') == 'SM' 
+                    || strtoupper($this->session->userdata('Designation')) == 'ADMIN' ) { ?>
+                <?php echo isset($smlist) ? $smlist : ''; ?>
+                <?php echo isset($bmlist) ? $bmlist : ''; ?>
+                <?php echo isset($tmlist) ? $tmlist : ''; ?>
+                <?php echo isset($zone) ? $zone : ''; ?>
+                <?php echo isset($region) ? $region : ''; ?>
+                <button type="submit" class="btn btn-primary">Fetch</button>
+                <?php
+            }
+            ?>
+                
             <select name="id" class="btn btn-default">
                 <option value="">Select Institution </option>
                 <?php echo $Institution; ?>

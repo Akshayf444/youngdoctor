@@ -5,14 +5,21 @@
             $attributes = array('method' => 'GET');
             echo form_open('User/view_doctor', $attributes);
             ?>
-            <?php if ($this->session->userdata('Designation') == 'BM' || $this->session->userdata('Designation') == 'SM' ) { ?>
-            <?php echo isset($bmlist) ? $bmlist : ''; ?>
+            <?php if ($this->session->userdata('Designation') == 'BM' 
+                    || $this->session->userdata('Designation') == 'SM' 
+                    || strtoupper($this->session->userdata('Designation')) == 'ADMIN' ) { ?>
+                <?php echo isset($smlist) ? $smlist : ''; ?>
+                <?php echo isset($bmlist) ? $bmlist : ''; ?>
                 <?php echo isset($tmlist) ? $tmlist : ''; ?>
-                
+                <?php echo isset($zone) ? $zone : ''; ?>
+                <?php echo isset($region) ? $region : ''; ?>
                 <button type="submit" class="btn btn-primary">Fetch</button>
                 <?php
             }
             ?>
+                
+                
+             
             <a download="Doctor<?php echo date('dM g-i-a');?>.xls" class="btn btn-success pull" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheeting');"><i class="fa fa-arrow-circle-o-right"></i> Export</a>
             </form>
         </div>

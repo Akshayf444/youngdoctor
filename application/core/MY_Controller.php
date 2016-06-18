@@ -20,7 +20,7 @@ class MY_Controller extends CI_Controller {
         $this->SM_Emp_Id = $this->session->userdata('SM_Emp_Id');
         $this->SSM_Emp_Id = $this->session->userdata('SSM_Emp_Id');
         $this->Reporting_Id = $this->session->userdata('Reporting_Id');
-        $this->Designation = $this->session->userdata('Designation');
+        $this->Designation = strtoupper($this->session->userdata('Designation'));
         $this->Full_Name = $this->session->userdata('Full_Name');
         $this->smswayid = $this->session->userdata('smswayid');
     }

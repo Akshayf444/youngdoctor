@@ -97,7 +97,7 @@ class User extends MY_Controller {
         if ($this->is_logged_in('SM')) {
             $condition[] = "SM_Emp_Id = '" . $this->Emp_Id . "'";
         }
-       if ($this->is_logged_in('SM')) {
+        if ($this->is_logged_in('admin')) {
             
         }
         $data['dashboardstatus'] = $this->User_model->dashboardStatus($condition);
@@ -228,6 +228,7 @@ class User extends MY_Controller {
     }
 
     public function view_doctor() {
+
         $conditions = array(
             'DrStatus = 1', 'delstatus = 1'
         );
@@ -257,9 +258,29 @@ class User extends MY_Controller {
 
             $conditions[] = "BM_Emp_Id = " . $BM_Emp_Id;
         }
-        if ($this->is_logged_in('admin')) {
-        }
+        ///Admin Level Filters
+
+        if ($this->Designation=='ADMIN') {
+            $data['smlist'] = '<select name="SM_Emp_Id" class="btn btn-default"><option value="">Select SM</option>' . $this->Master_Model->generateDropdown($this->User_model->getSM(), 'SM_Emp_Id', 'SM_Name') . '</select>';
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone') . '</select>';
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($this->User_model->getRegion(), 'region', 'region') . '</select>';
         
+         
+        }
+
+        ///Region Level Filters, Adding Regions in main array
+        if ($this->input->get('region') != '') {
+            $region = $this->input->get('region');
+            $conditions[] = "region = '" . $region . "'";
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($region, 'region', 'region', $region) . '</select>';
+        }
+
+        ///Adding Zones in main array
+        if ($this->input->get('zone') != '') {
+            $zone = $this->input->get('zone');
+            $conditions[] = "zone = '" . $zone . "'";
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone', $zone) . '</select>';
+        }
         if (!empty($conditions)) {
             $data['show'] = $this->User_model->view_all($conditions);
         }
@@ -280,8 +301,7 @@ class User extends MY_Controller {
         $conditions = array(
             'DrStatus = 2', 'delstatus = 1'
         );
-         if ($this->is_logged_in('admin')) {
-        }
+
         if ($this->is_logged_in('SM')) {
             $SM_Emp_Id = $this->Emp_Id;
             $tmlist = $this->User_model->getbm(array('SM_Emp_Id = ' . $SM_Emp_Id));
@@ -290,6 +310,25 @@ class User extends MY_Controller {
                 $data['bmlist'] = '<select class="btn btn-default" name="BM_Emp_Id"><option value="0"  >Select BM</option>' . $this->Master_Model->generateDropdown($tmlist, 'BM_Emp_Id', 'BM_Name', $this->input->get('BM_Emp_Id')) . '</select>';
             }
             $conditions[] = 'SM_Emp_Id = ' . $SM_Emp_Id;
+        }
+       if ($this->Designation=='ADMIN'){
+            $data['smlist'] = '<select name="SM_Emp_Id" class="btn btn-default"><option value="">Select SM</option>' . $this->Master_Model->generateDropdown($this->User_model->getSM(), 'SM_Emp_Id', 'SM_Name') . '</select>';
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone') . '</select>';
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($this->User_model->getRegion(), 'region', 'region') . '</select>';
+        }
+
+        ///Region Level Filters, Adding Regions in main array
+        if ($this->input->get('region') != '') {
+            $region = $this->input->get('region');
+            $conditions[] = "region = '" . $region . "'";
+            $data['region'] = '<select name="region" class="btn btn-default"><option value="">Select Region</option>' . $this->Master_Model->generateDropdown($region, 'region', 'region', $region) . '</select>';
+        }
+
+        ///Adding Zones in main array
+        if ($this->input->get('zone') != '') {
+            $zone = $this->input->get('zone');
+            $conditions[] = "zone = '" . $zone . "'";
+            $data['zone'] = '<select name="zone" class="btn btn-default"><option value="">Select Zone</option>' . $this->Master_Model->generateDropdown($this->User_model->getZone(), 'zone', 'zone', $zone) . '</select>';
         }
 
         if ($this->is_logged_in('BM') || $this->input->get('BM_Emp_Id')) {
