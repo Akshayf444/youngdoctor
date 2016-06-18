@@ -13,7 +13,7 @@
                 <?php echo isset($tmlist) ? $tmlist : ''; ?>
                 <?php echo isset($zone) ? $zone : ''; ?>
                 <?php echo isset($region) ? $region : ''; ?>
-                <button type="submit" class="btn btn-primary">Fetch</button>
+                
                 <?php
             }
             ?>
