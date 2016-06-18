@@ -10,14 +10,6 @@ echo form_open('User/addinstitute', $attribute);
 <div class="row">
     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
         <div class="form-group">
-<<<<<<< HEAD
-            <input type="text" class="form-control" value="" name="name" placeholder="Institute Name" />
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" value="" name="city" placeholder="City" /> </div>
-
-        <div class="form-group">
-=======
             Institute Name
             <input type="text" class="form-control" value="" name="name" placeholder="Institute Name" />
         </div>
@@ -27,17 +19,13 @@ echo form_open('User/addinstitute', $attribute);
 
         <div class="form-group">
             State
->>>>>>> 222de80eb3e312f76db8cd720466b67b52acb116
             <select  class="form-control" name="state" >
                 <option value="">Select State</option>
                 <?php echo $states; ?>
             </select> 
         </div>
         <div class="form-group">
-<<<<<<< HEAD
-=======
             Address
->>>>>>> 222de80eb3e312f76db8cd720466b67b52acb116
             <textarea class="form-control" name="address" placeholder="Address"></textarea></div>
 
         <button class="btn btn-block btn-success " type="submit">SAVE</button>

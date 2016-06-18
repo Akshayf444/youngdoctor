@@ -6,19 +6,6 @@ echo form_open('User/update_pgdoc?id=' . $rows->DoctorId, $attribute);
     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
         <input type="hidden" class="form-control" value="<?php echo $rows->DoctorId ?>" name="DoctorId"  />
         <div class="form-group">
-<<<<<<< HEAD
-            <input type="text" class="form-control" value="<?php echo $rows->Doctor_Name ?>" name="Doctor_Name" placeholder="Doctor Name" />
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" value="<?php echo $rows->MSL_Code; ?>" name="MSL_Code" placeholder="MSL Code" /> </div>
-        <div class="form-group">
-            <input type="text" class="form-control" value="<?php echo $rows->address; ?>" name="address" placeholder="Clinic Address"/> </div>
-        <div class="form-group">
-            <input type="text" class="form-control" value="<?php echo $rows->Mobile_Number; ?>" name="Mobile_Number" placeholder="Mobile "/> </div>
-        <div class="form-group">
-            <input type="text" class="form-control" value="<?php echo $rows->email; ?>" name="email" placeholder="Email"/> </div>
-        <div class="form-group">
-=======
             Doctor Name
             <input type="text" class="form-control" value="<?php echo $rows->Doctor_Name ?>" name="Doctor_Name" placeholder="Doctor Name" />
         </div>
@@ -36,20 +23,14 @@ echo form_open('User/update_pgdoc?id=' . $rows->DoctorId, $attribute);
             <input type="text" class="form-control" value="<?php echo $rows->email; ?>" name="email" placeholder="Email"/> </div>
         <div class="form-group">
             Institution
->>>>>>> 222de80eb3e312f76db8cd720466b67b52acb116
             <select  class="form-control" name="Institution" ><option value="">Select Institution</option><?php echo $institute ?></select>
         </div>	
 
         <div class="form-group">
-<<<<<<< HEAD
-            <select  class="form-control" name="Years_Practice" >
-                <option value="">Select Years Of Practice</option>
-
-=======
             Years Of Practice
             <select  class="form-control" name="Years_Practice" >
                 <option value="">Select Years Of Practice</option>
->>>>>>> 222de80eb3e312f76db8cd720466b67b52acb116
+
                 <option value="0" <?php
                 if ($rows->Years_Practice == '0') {
                     echo 'selected';
@@ -85,12 +66,6 @@ echo form_open('User/update_pgdoc?id=' . $rows->DoctorId, $attribute);
 
 
         <div class="form-group">
-<<<<<<< HEAD
-            <input type="text" class="form-control" value="<?php echo $rows->DOB; ?>" id="date" name="DOB" placeholder="Date Of Birth"/></div>
-        <div class="form-group">
-            <input type="text" class="form-control" value="<?php echo $rows->ANNIVERSARY; ?>" id="date1" name="ANNIVERSARY" placeholder="Clinic Anniversary"/></div>
-        <div class="form-group">
-=======
             Date Of Birth
             <input type="text" class="form-control" value="<?php echo $rows->DOB; ?>" id="date" name="DOB" placeholder="Date Of Birth"/></div>
         <div class="form-group">
@@ -98,7 +73,6 @@ echo form_open('User/update_pgdoc?id=' . $rows->DoctorId, $attribute);
             <input type="text" class="form-control" value="<?php echo $rows->ANNIVERSARY; ?>" id="date1" name="ANNIVERSARY" placeholder="Clinic Anniversary"/></div>
         <div class="form-group">
             Name Of Clipa Services
->>>>>>> 222de80eb3e312f76db8cd720466b67b52acb116
             <input type="text" class="form-control" value="<?php echo $rows->CiplaSerice; ?>" name="ClipaSerice" placeholder=" Name Of Clipa Services"/> </div>
         <div class="form-group">
 
@@ -114,14 +88,9 @@ echo form_open('User/update_pgdoc?id=' . $rows->DoctorId, $attribute);
                 echo "checked";
             }
             ?> > No
-<<<<<<< HEAD
 
         </div>
 
-=======
-        </div>
-
->>>>>>> 222de80eb3e312f76db8cd720466b67b52acb116
 
         <button class="btn btn-block btn-success " type="submit">UPDATE</button>
     </div>
